@@ -65,6 +65,51 @@
             color: rgba(255,255,255,0.8);
             letter-spacing: 0.04em;
         }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .timer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            background: rgba(0,0,0,0.18);
+            padding: 0.3rem 0.85rem;
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.25);
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .timer-label {
+            font-size: 0.62rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        .timer-value {
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.04em;
+            margin-top: 0.05rem;
+        }
+        .timer.warning .timer-value { color: #ffd166; }
+        .timer.danger { background: rgba(176,0,32,0.45); border-color: rgba(255,255,255,0.5); }
+        .timer.danger .timer-value { color: #fff; animation: pulse 1s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.55; }
+        }
+        .timeup-banner {
+            background: var(--danger);
+            color: #fff;
+            padding: 0.85rem 1.25rem;
+            border-radius: 3px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            display: none;
+            letter-spacing: 0.04em;
+        }
         .container {
             max-width: 820px;
             margin: 0 auto;
@@ -387,7 +432,13 @@
             <span class="logo">MGMT 494BI</span>
             <h1>Midterm Makeup · Brennan &amp; Hale Audio</h1>
         </div>
-        <span class="secure-badge">Open-Note Examination</span>
+        <div class="header-right">
+            <div id="timer-display" class="timer" style="display:none;">
+                <span class="timer-label">Time Remaining</span>
+                <span class="timer-value" id="timer-value">45:00</span>
+            </div>
+            <span class="secure-badge" id="secure-badge">Open-Note Examination</span>
+        </div>
     </div>
 
     <!-- ─── AUTH SCREEN ───────────────────────────────────────────────── -->
@@ -466,8 +517,11 @@
                     <p>CEO Desai has assembled a small strategy team — and you are on it. The board has asked the team to bring forward recommendations on four strategic questions. The strategy team has chosen a path on each. Your job, on this examination, is to demonstrate that you understand the logic of those choices and can apply the relevant 494BI frameworks to test them.</p>
                 </div>
 
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button id="to-questions-btn" class="btn">Begin Section Alpha</button>
+                <div class="notice" style="margin-top: 1.5rem;">
+                    <strong>Time limit:</strong> 45 minutes, starting the moment you click <em>Begin Section Alpha</em> below. The timer is shown in the top-right of every page. When time runs out, the exam will be submitted automatically with whatever answers you have entered — unanswered questions are scored as incorrect.
+                </div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button id="to-questions-btn" class="btn">Begin Section Alpha (start 45-min timer)</button>
                 </div>
             </div>
         </div>
@@ -476,6 +530,7 @@
     <!-- ─── EXAM SCREEN ──────────────────────────────────────────────── -->
     <div id="exam-screen" class="screen">
         <div class="container">
+            <div class="timeup-banner" id="timeup-banner">Time has expired. Your exam has been submitted automatically.</div>
             <div class="progress-track" id="progress-track">
                 <div class="pt-step active"></div>
                 <div class="pt-step"></div>
@@ -524,6 +579,8 @@
 <script>
 // ─── CONFIG ────────────────────────────────────────────────────────────────
 const ACCESS_CODE = "BH494";
+const TIME_LIMIT_SECONDS = 45 * 60;  // 45 minutes
+const WARNING_AT_SECONDS = 5 * 60;   // visual warning at 5:00 remaining
 // Google Form submission target (set after form creation):
 const FORM_URL = ""; // will be filled in after Google Form is created
 const FORM_ENTRY = {
@@ -850,7 +907,54 @@ $('to-case-btn').addEventListener('click', () => showScreen('case-screen'));
 $('to-questions-btn').addEventListener('click', () => {
     renderExam();
     showScreen('exam-screen');
+    startTimer();
 });
+
+// ─── TIMER ────────────────────────────────────────────────────────────────
+let timerInterval = null;
+let timerEndsAt = null;
+
+function startTimer() {
+    if (timerInterval) return;
+    timerEndsAt = Date.now() + TIME_LIMIT_SECONDS * 1000;
+    $('timer-display').style.display = 'flex';
+    $('secure-badge').style.display = 'none';
+    tickTimer();
+    timerInterval = setInterval(tickTimer, 1000);
+}
+
+function tickTimer() {
+    if (state.submitted) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        return;
+    }
+    const remainingMs = timerEndsAt - Date.now();
+    const remainingSec = Math.max(0, Math.floor(remainingMs / 1000));
+    const mm = Math.floor(remainingSec / 60);
+    const ss = remainingSec % 60;
+    $('timer-value').textContent = `${mm}:${String(ss).padStart(2, '0')}`;
+
+    const tEl = $('timer-display');
+    tEl.classList.remove('warning', 'danger');
+    if (remainingSec <= 60) tEl.classList.add('danger');
+    else if (remainingSec <= WARNING_AT_SECONDS) tEl.classList.add('warning');
+
+    if (remainingSec <= 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        autoSubmitOnTimeUp();
+    }
+}
+
+function autoSubmitOnTimeUp() {
+    if (state.submitted) return;
+    $('timeup-banner').style.display = 'block';
+    // Lock all unanswered questions
+    document.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
+    // Force-submit with whatever answers exist (unanswered = blank, scored as wrong)
+    submitExam(true);
+}
 
 // ─── RENDER EXAM ──────────────────────────────────────────────────────────
 function renderExam() {
@@ -971,11 +1075,11 @@ function maybeShowSubmit() {
 }
 
 // ─── SUBMIT ───────────────────────────────────────────────────────────────
-$('submit-btn').addEventListener('click', submitExam);
+$('submit-btn').addEventListener('click', () => submitExam(false));
 
-function submitExam() {
+function submitExam(forced) {
     if (state.submitted) return;
-    if (Object.keys(state.answers).length !== 20) return;
+    if (!forced && Object.keys(state.answers).length !== 20) return;
 
     // Score
     let correct = 0;
