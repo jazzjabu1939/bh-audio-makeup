@@ -309,6 +309,32 @@
             border-color: #ccc;
             background: #fafafa;
         }
+        .section-locked .question-block { opacity: 0.7; }
+        .section-submit-area {
+            background: var(--accent-light);
+            border: 1px solid var(--accent-mid);
+            border-left: 4px solid var(--accent);
+            border-radius: 2px;
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .section-submit-area .ssa-status {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.88rem;
+            color: var(--accent);
+        }
+        .section-submit-area.locked {
+            background: #f0f0f0;
+            border-color: #ddd;
+            border-left-color: #999;
+        }
+        .section-submit-area.locked .ssa-status { color: var(--text-muted); }
         .q-meta {
             display: flex;
             align-items: center;
@@ -338,7 +364,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
-        .question-block.answered .q-locked { display: inline-block; }
+        .question-block.section-locked .q-locked { display: inline-block; }
         .q-stem {
             font-size: 1rem;
             line-height: 1.7;
@@ -485,7 +511,7 @@
                 </div>
 
                 <div class="notice notice-info">
-                    <strong>Once you select an answer, it cannot be changed.</strong> Read each question carefully before clicking.
+                    <strong>How answering works:</strong> Within each section, you can change your answer to any question as many times as you want. When you are satisfied with all 5 answers in a section, click <em>Submit Section Answers</em>. Once a section is submitted, those 5 answers are locked. Sections are submitted in order: Alpha → Beta → Gamma → Delta. After all four sections are submitted, click <em>Submit Exam &amp; See Results</em> to finalize.
                 </div>
 
                 <div class="prose" style="margin-top: 1rem;">
@@ -543,8 +569,8 @@
             </div>
 
             <div class="submit-area" id="submit-area" style="display:none;">
-                <p id="submit-status">All 20 questions answered. Review your work above, then submit.</p>
-                <button id="submit-btn" class="btn">Submit Exam</button>
+                <p id="submit-status">All four sections submitted. Click below to finalize and see your score.</p>
+                <button id="submit-btn" class="btn">Submit Exam &amp; See Results</button>
             </div>
         </div>
     </div>
@@ -950,8 +976,11 @@ function tickTimer() {
 function autoSubmitOnTimeUp() {
     if (state.submitted) return;
     $('timeup-banner').style.display = 'block';
-    // Lock all unanswered questions
+    // Force-lock every section so any answers (submitted or in-progress) are counted
+    SITUATIONS.forEach(s => lockedSections.add(s.id));
     document.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
+    document.querySelectorAll('.question-block').forEach(qb => qb.classList.add('section-locked'));
+    document.querySelectorAll('[id^="section-btn-"]').forEach(b => { b.disabled = true; b.textContent = 'Time Expired'; });
     // Force-submit with whatever answers exist (unanswered = blank, scored as wrong)
     submitExam(true);
 }
@@ -981,6 +1010,10 @@ function renderExam() {
                 </div>
             </div>
             <div id="questions-${sit.id}"></div>
+            <div class="section-submit-area" id="section-submit-${sit.id}">
+                <span class="ssa-status" id="ssa-status-${sit.id}">0 of ${sit.questions.length} answered — you can change answers freely until you submit this section.</span>
+                <button class="btn" id="section-btn-${sit.id}" data-section="${sit.id}" disabled>Submit Section Answers</button>
+            </div>
         `;
         container.appendChild(section);
 
@@ -1000,7 +1033,7 @@ function renderExam() {
             qBlock.innerHTML = `
                 <div class="q-meta">
                     <span class="q-num">Question ${getGlobalQNum(sIdx, qIdx)} of 20</span>
-                    <span class="q-locked">Answer Locked</span>
+                    <span class="q-locked">Section Submitted</span>
                 </div>
                 <div class="q-stem">${q.stem}</div>
                 <div class="choices">${choicesHtml}</div>
@@ -1013,6 +1046,47 @@ function renderExam() {
     document.querySelectorAll('.choice-btn').forEach(btn => {
         btn.addEventListener('click', handleChoice);
     });
+    // Wire up section-submit buttons
+    document.querySelectorAll('[id^="section-btn-"]').forEach(btn => {
+        btn.addEventListener('click', () => submitSection(btn.dataset.section));
+    });
+}
+
+const lockedSections = new Set();
+
+function submitSection(sectionId) {
+    if (lockedSections.has(sectionId)) return;
+    if (state.submitted) return;
+    const sit = SITUATIONS.find(s => s.id === sectionId);
+    const allAnswered = sit.questions.every(q => state.answers[q.id]);
+    if (!allAnswered) return;
+
+    lockedSections.add(sectionId);
+
+    // Visually lock all questions in this section
+    const sectionEl = $(`section-${sectionId}`);
+    sectionEl.querySelectorAll('.question-block').forEach(qb => qb.classList.add('section-locked'));
+    sectionEl.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
+
+    const ssa = $(`section-submit-${sectionId}`);
+    ssa.classList.add('locked');
+    $(`ssa-status-${sectionId}`).textContent = 'Section submitted. Answers locked.';
+    const btn = $(`section-btn-${sectionId}`);
+    btn.textContent = 'Submitted ✓';
+    btn.disabled = true;
+
+    updateProgress();
+    maybeShowSubmit();
+
+    // Scroll to next unlocked section if any
+    const idx = SITUATIONS.findIndex(s => s.id === sectionId);
+    const nextSit = SITUATIONS[idx + 1];
+    if (nextSit) {
+        const nextEl = $(`section-${nextSit.id}`);
+        if (nextEl) {
+            setTimeout(() => nextEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+        }
+    }
 }
 
 function getGlobalQNum(sIdx, qIdx) {
@@ -1024,54 +1098,67 @@ function handleChoice(e) {
     const qid = btn.dataset.q;
     const choice = btn.dataset.choice;
 
-    if (state.answers[qid]) return; // already locked
     if (state.submitted) return;
 
+    // Find which section this question belongs to
+    const sit = SITUATIONS.find(s => s.questions.some(q => q.id === qid));
+    if (!sit) return;
+    if (lockedSections.has(sit.id)) return; // section already submitted
+
+    // Update state
     state.answers[qid] = choice;
 
-    // Lock all buttons for this question
+    // Update UI: deselect siblings, select this one
     const qBlock = btn.closest('.question-block');
     qBlock.classList.add('answered');
     qBlock.querySelectorAll('.choice-btn').forEach(b => {
-        b.classList.add('locked');
-        if (b === btn) b.classList.add('selected');
+        b.classList.remove('selected');
     });
+    btn.classList.add('selected');
+
+    // Update section status
+    const sectionAnswered = sit.questions.filter(q => state.answers[q.id]).length;
+    const sectionTotal = sit.questions.length;
+    const statusEl = $(`ssa-status-${sit.id}`);
+    if (statusEl) {
+        if (sectionAnswered === sectionTotal) {
+            statusEl.textContent = `All ${sectionTotal} answered. You may change any answer until you click submit.`;
+        } else {
+            statusEl.textContent = `${sectionAnswered} of ${sectionTotal} answered — you can change answers freely until you submit this section.`;
+        }
+    }
+    const sBtn = $(`section-btn-${sit.id}`);
+    if (sBtn) sBtn.disabled = (sectionAnswered !== sectionTotal);
 
     updateProgress();
-    maybeShowSubmit();
 }
 
 function updateProgress() {
-    const sectionProgress = SITUATIONS.map(sit => {
-        const total = sit.questions.length;
-        const done = sit.questions.filter(q => state.answers[q.id]).length;
-        return { total, done };
-    });
     const track = $('progress-track');
     track.innerHTML = '';
-    sectionProgress.forEach(sp => {
+    SITUATIONS.forEach(sit => {
         const step = document.createElement('div');
         step.className = 'pt-step';
-        if (sp.done === sp.total) step.classList.add('done');
-        else if (sp.done > 0) step.classList.add('active');
+        if (lockedSections.has(sit.id)) {
+            step.classList.add('done');
+        } else {
+            const done = sit.questions.filter(q => state.answers[q.id]).length;
+            if (done > 0) step.classList.add('active');
+        }
         track.appendChild(step);
     });
 }
 
 function maybeShowSubmit() {
-    const totalAnswered = Object.keys(state.answers).length;
+    const allLocked = SITUATIONS.every(s => lockedSections.has(s.id));
     const submitArea = $('submit-area');
-    const status = $('submit-status');
-    if (totalAnswered === 20) {
+    if (allLocked) {
         submitArea.style.display = 'block';
-        status.textContent = 'All 20 questions answered. Review your work above, then submit.';
+        $('submit-status').textContent = 'All four sections submitted. Click below to finalize and see your score.';
+        $('submit-btn').disabled = false;
     } else {
-        submitArea.style.display = 'block';
-        status.textContent = `${totalAnswered} of 20 answered. Submit will become active once all questions are complete.`;
-        $('submit-btn').disabled = true;
-        return;
+        submitArea.style.display = 'none';
     }
-    $('submit-btn').disabled = false;
 }
 
 // ─── SUBMIT ───────────────────────────────────────────────────────────────
@@ -1079,7 +1166,10 @@ $('submit-btn').addEventListener('click', () => submitExam(false));
 
 function submitExam(forced) {
     if (state.submitted) return;
-    if (!forced && Object.keys(state.answers).length !== 20) return;
+    if (!forced) {
+        // All four sections must be section-submitted before final submit
+        if (!SITUATIONS.every(s => lockedSections.has(s.id))) return;
+    }
 
     // Score
     let correct = 0;
