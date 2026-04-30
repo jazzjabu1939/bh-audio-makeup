@@ -1,0 +1,109 @@
+# B&H Audio Exam — Answer Key Summary
+## MGMT 494BI · Fall 2026 · For instructor use only
+
+**Format:** Each student answers 20 questions (one path per situation × 4 situations).
+**Scoring:** 5 pts / question × 20 Qs = 100 pts total.
+
+---
+
+## Compact Answer Card
+
+```
+SITUATION ALPHA — Where Does the Value Come From?
+───────────────────────────────────────────────
+Path A: Craft Story          Q1:B  Q2:A  Q3:C  Q4:C  Q5:D
+Path B: Community Story      Q1:B  Q2:B  Q3:B  Q4:B  Q5:C
+
+SITUATION BETA — Channel Strategy
+───────────────────────────────────────────────
+Path A: D2C Hybrid           Q1:A  Q2:B  Q3:D  Q4:C  Q5:A
+Path B: Double Down/Dealers  Q1:B  Q2:A  Q3:B  Q4:B  Q5:B
+
+SITUATION GAMMA — Brand Protection & Co-Branding
+───────────────────────────────────────────────
+Path A: Decline Apex         Q1:C  Q2:B  Q3:A  Q4:D  Q5:B
+Path B: Accept Apex          Q1:B  Q2:B  Q3:D  Q4:B  Q5:B
+
+SITUATION DELTA — Industry Analysis & Five Forces
+───────────────────────────────────────────────
+Path A: Audiophile $1,500+   Q1:A  Q2:D  Q3:B  Q4:C  Q5:C
+Path B: Connected Home $500+ Q1:B  Q2:B  Q3:B  Q4:C  Q5:B
+```
+
+---
+
+## Path Label Format (shown on student results screen)
+
+Students see their path at end of exam in this format:
+
+> `[Alpha path] › [Beta path] › [Gamma path] › [Delta path]`
+
+**Examples:**
+- `Craft Story › D2C Hybrid › Decline Apex › Audiophile Segment ($1,500+)`
+- `Community Story › Double Down on Dealers › Accept Apex › Connected Home ($500+)`
+
+There are **16 possible path combinations** (2⁴), all yielding 20 questions and a 100-point exam.
+
+---
+
+## Correct Answer Summary by Concept Tested
+
+| Situation | Path | Q | Concept Tested | Correct |
+|-----------|------|---|---------------|---------|
+| Alpha | Craft Story | 1 | Causal mechanism of value creation | B |
+| Alpha | Craft Story | 2 | Isolating mechanism / value capture | A |
+| Alpha | Craft Story | 3 | Activity-system implication (dealer cut) | C |
+| Alpha | Craft Story | 4 | Activity-system violation ($399 speaker) | C |
+| Alpha | Craft Story | 5 | Coherent growth without violating Craft Story | D |
+| Alpha | Community Story | 1 | Causal mechanism (community framing) | B |
+| Alpha | Community Story | 2 | Isolating mechanism (community framing) | B |
+| Alpha | Community Story | 3 | Most critical activity to protect | B |
+| Alpha | Community Story | 4 | Competitor editorial win as threat | B |
+| Alpha | Community Story | 5 | Aligned growth investment | C |
+| Beta | D2C Hybrid | 1 | Activity most strained by D2C | A |
+| Beta | D2C Hybrid | 2 | Digital marketing vs. no-advertising activity | B |
+| Beta | D2C Hybrid | 3 | Downstream consequence of D2C at scale | D |
+| Beta | D2C Hybrid | 4 | Most important 90-day decision | C |
+| Beta | D2C Hybrid | 5 | Activity most reinforcing of D2C | A |
+| Beta | Double Down | 1 | Activity most reinforced by Double Down | B |
+| Beta | Double Down | 2 | Strategic complementarity | A |
+| Beta | Double Down | 3 | Value capture mechanism | B |
+| Beta | Double Down | 4 | Main strategic tradeoff | B |
+| Beta | Double Down | 5 | Leading indicator of failure | B |
+| Gamma | Decline Apex | 1 | Brand-equity element most at risk | C |
+| Gamma | Decline Apex | 2 | Strongest argument for declining | B |
+| Gamma | Decline Apex | 3 | Flaw in Bose/Burmester analogy | A |
+| Gamma | Decline Apex | 4 | Leading indicator if decline was wrong | D |
+| Gamma | Decline Apex | 5 | Coherent alternative growth path | B |
+| Gamma | Accept Apex | 1 | Brand extension success condition | B |
+| Gamma | Accept Apex | 2 | Purpose of signal-chain control | B |
+| Gamma | Accept Apex | 3 | Most critical guardrail | D |
+| Gamma | Accept Apex | 4 | Residual risk contracts can't eliminate | B |
+| Gamma | Accept Apex | 5 | Leading indicator of brand impact | B |
+| Delta | Audiophile $1,500+ | 1 | New entrant threat | A |
+| Delta | Audiophile $1,500+ | 2 | Buyer power | D |
+| Delta | Audiophile $1,500+ | 3 | Threat of substitutes | B |
+| Delta | Audiophile $1,500+ | 4 | Force most shaping profitability | C |
+| Delta | Audiophile $1,500+ | 5 | Five Forces synthesis | C |
+| Delta | Connected Home $500+ | 1 | New entrant threat (broader definition) | B |
+| Delta | Connected Home $500+ | 2 | Buyer power (broader definition) | B |
+| Delta | Connected Home $500+ | 3 | Substitute shift under broader definition | B |
+| Delta | Connected Home $500+ | 4 | Rivalry change under broader definition | C |
+| Delta | Connected Home $500+ | 5 | Strategic implication of broader definition | B |
+
+---
+
+## Audio Files (New Paths Only)
+
+| File | Path | Duration |
+|------|------|---------|
+| `audio/community-story.mp3` | Alpha: Community Story | ~45 sec |
+| `audio/double-down-dealers.mp3` | Beta: Double Down on Dealers | ~45 sec |
+| `audio/accept-apex.mp3` | Gamma: Accept Apex | ~45 sec |
+| `audio/connected-home.mp3` | Delta: Connected Home $500+ | ~45 sec |
+
+*Voice: Laura (ElevenLabs cloned voice, ID: zKHQdbB8oaQ7roNTiDTK) · eleven_multilingual_v2*
+
+---
+
+*Generated by Thea (OpenClaw) · April 30, 2026*

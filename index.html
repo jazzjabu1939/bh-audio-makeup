@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Brennan & Hale Audio Scenario | MGMT 494BI Midterm Makeup</title>
+    <title>The Brennan &amp; Hale Audio Scenario | MGMT 494BI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,6 +51,7 @@
             border-radius: 3px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .header h1 {
             font-family: 'Source Sans 3', sans-serif;
@@ -59,13 +60,13 @@
             color: rgba(255,255,255,0.9);
             letter-spacing: 0.01em;
         }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
         .secure-badge {
             font-family: 'Source Sans 3', sans-serif;
             font-size: 0.78rem;
             color: rgba(255,255,255,0.8);
             letter-spacing: 0.04em;
         }
-        .header-right { display: flex; align-items: center; gap: 1rem; }
         .timer {
             display: flex;
             flex-direction: column;
@@ -76,28 +77,12 @@
             border: 1px solid rgba(255,255,255,0.25);
             font-family: 'Source Sans 3', sans-serif;
         }
-        .timer-label {
-            font-size: 0.62rem;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-        }
-        .timer-value {
-            font-size: 1.05rem;
-            color: #fff;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            letter-spacing: 0.04em;
-            margin-top: 0.05rem;
-        }
+        .timer-label { font-size: 0.62rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+        .timer-value { font-size: 1.05rem; color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; margin-top: 0.05rem; }
         .timer.warning .timer-value { color: #ffd166; }
         .timer.danger { background: rgba(176,0,32,0.45); border-color: rgba(255,255,255,0.5); }
         .timer.danger .timer-value { color: #fff; animation: pulse 1s infinite; }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.55; }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
         .timeup-banner {
             background: var(--danger);
             color: #fff;
@@ -110,13 +95,12 @@
             display: none;
             letter-spacing: 0.04em;
         }
-        .container {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
         .screen { display: none; }
         .screen.active { display: block; }
+        #auth-screen { display: none; align-items: center; justify-content: center; min-height: 60vh; padding-top: 2rem; }
+        #auth-screen.active { display: flex; }
+        #auth-screen .card { text-align: center; max-width: 400px; width: 100%; padding: 2rem; border-top: 4px solid var(--accent); }
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -136,32 +120,13 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
         }
-        .card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
+        .card h3 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; }
         .prose { color: var(--text-dim); font-size: 0.97rem; }
         .prose p { margin-bottom: 1rem; }
         .prose p:last-child { margin-bottom: 0; }
         .prose strong { color: var(--text); }
-
-        #auth-screen {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            padding-top: 2rem;
-        }
-        #auth-screen.active { display: flex; }
-        #auth-screen .card {
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-            padding: 2rem;
-            border-top: 4px solid var(--accent);
-        }
+        .prose ul { margin: 0.5rem 0 1rem 1.5rem; }
+        .prose li { margin-bottom: 0.3rem; }
         .field-label {
             display: block;
             font-family: 'Source Sans 3', sans-serif;
@@ -203,12 +168,35 @@
         .btn:hover { background: #6a1010; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(136,28,28,0.25); }
         .btn:active { transform: translateY(0); }
         .btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 1.5px solid var(--accent);
+        .btn-choice {
+            background: #fff;
+            color: var(--text);
+            border: 1.5px solid #ddd;
+            padding: 1.1rem 1.25rem;
+            font-family: Georgia, serif;
+            font-size: 0.95rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 0.6rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            display: block;
         }
-        .btn-secondary:hover { background: var(--accent-light); }
+        .btn-choice:hover { border-color: var(--accent); background: var(--accent-light); }
+        .btn-choice .choice-label {
+            display: block;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.68rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .btn-choice .choice-title { font-size: 1rem; font-weight: 700; color: var(--text); font-family: 'Source Sans 3', sans-serif; }
+        .btn-choice .choice-desc { font-size: 0.88rem; color: var(--text-muted); margin-top: 0.25rem; font-family: Georgia, serif; }
         .notice {
             background: #fff8f0;
             border: 1px solid #e0a060;
@@ -237,19 +225,8 @@
             border: 1px solid #e0e0e0;
             margin: 0.75rem 0;
         }
-        .mono-info .mi-label {
-            font-size: 0.68rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-        }
-        .mono-info .mi-value {
-            font-size: 1rem;
-            color: var(--accent);
-            margin-top: 0.2rem;
-            font-weight: 600;
-        }
+        .mono-info .mi-label { font-size: 0.68rem; color: #999; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
+        .mono-info .mi-value { font-size: 1rem; color: var(--accent); margin-top: 0.2rem; font-weight: 600; }
         .situation-badge {
             display: inline-block;
             font-family: 'Source Sans 3', sans-serif;
@@ -272,17 +249,8 @@
             border-bottom: 2px solid var(--accent);
             padding-bottom: 0.5rem;
         }
-        .progress-track {
-            display: flex;
-            gap: 0.4rem;
-            margin: 0 0 1.5rem;
-        }
-        .pt-step {
-            flex: 1;
-            height: 5px;
-            background: #ddd;
-            border-radius: 2px;
-        }
+        .progress-track { display: flex; gap: 0.4rem; margin: 0 0 1.5rem; }
+        .pt-step { flex: 1; height: 5px; background: #ddd; border-radius: 2px; }
         .pt-step.done { background: var(--accent); }
         .pt-step.active { background: rgba(136,28,28,0.55); }
         .questions-header {
@@ -305,42 +273,8 @@
             transition: border-color 0.2s, opacity 0.2s;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .question-block.answered {
-            border-color: #ccc;
-            background: #fafafa;
-        }
-        .section-locked .question-block { opacity: 0.7; }
-        .section-submit-area {
-            background: var(--accent-light);
-            border: 1px solid var(--accent-mid);
-            border-left: 4px solid var(--accent);
-            border-radius: 2px;
-            padding: 1rem 1.25rem;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-        .section-submit-area .ssa-status {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.88rem;
-            color: var(--accent);
-        }
-        .section-submit-area.locked {
-            background: #f0f0f0;
-            border-color: #ddd;
-            border-left-color: #999;
-        }
-        .section-submit-area.locked .ssa-status { color: var(--text-muted); }
-        .q-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.85rem;
-        }
+        .question-block.answered { border-color: #ccc; background: #fafafa; opacity: 0.85; }
+        .q-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem; }
         .q-num {
             font-family: 'Source Sans 3', sans-serif;
             font-size: 0.7rem;
@@ -364,13 +298,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
-        .question-block.section-locked .q-locked { display: inline-block; }
-        .q-stem {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text);
-            margin-bottom: 1.25rem;
-        }
+        .q-stem { font-size: 1rem; line-height: 1.7; color: var(--text); margin-bottom: 1.25rem; }
         .choices { display: flex; flex-direction: column; gap: 0.5rem; }
         .choice-btn {
             display: flex;
@@ -388,17 +316,8 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
-        .choice-btn:hover:not(.locked) {
-            border-color: var(--accent);
-            background: var(--accent-light);
-            color: var(--text);
-        }
-        .choice-btn.selected {
-            border-color: var(--accent);
-            background: var(--accent-light);
-            color: var(--text);
-            font-weight: 500;
-        }
+        .choice-btn:hover:not(.locked) { border-color: var(--accent); background: var(--accent-light); color: var(--text); }
+        .choice-btn.selected { border-color: var(--accent); background: var(--accent-light); color: var(--text); font-weight: 500; }
         .choice-btn.locked { cursor: not-allowed; }
         .choice-btn.locked:not(.selected) { opacity: 0.5; }
         .choice-letter {
@@ -416,36 +335,63 @@
             border-top: 3px solid var(--accent);
             border-radius: 2px;
             padding: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             text-align: center;
         }
-        .submit-area p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .submit-area p { color: var(--text-muted); font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem; margin-bottom: 1rem; }
+        .path-display {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.88rem;
+            color: var(--accent);
+            padding: 0.75rem 1rem;
+            background: var(--accent-light);
+            border-radius: 2px;
+            border: 1px solid var(--accent-mid);
+            margin: 0.75rem 0;
+            word-break: break-word;
+        }
         .results-card { text-align: center; padding: 2.5rem 2rem; }
         .results-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .results-score {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 1rem 0;
+        .results-score { font-family: 'Source Sans 3', sans-serif; font-size: 3rem; font-weight: 700; color: var(--accent); margin: 1rem 0; }
+        .results-pct { font-family: 'Source Sans 3', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; }
+        .answer-review-item { padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: 2px; font-size: 0.88rem; font-family: 'Source Sans 3', sans-serif; }
+        .answer-review-item.correct { background: #f0f8f0; border-left: 3px solid #2a7a2a; }
+        .answer-review-item.incorrect { background: #fdf0f0; border-left: 3px solid var(--danger); }
+        .ari-status { font-weight: 700; margin-bottom: 0.2rem; }
+        .ari-status.correct { color: #2a7a2a; }
+        .ari-status.incorrect { color: var(--danger); }
+        .ari-question { color: #777; font-size: 0.83rem; margin: 0.2rem 0; }
+        .ari-answer { color: #555; font-size: 0.8rem; }
+        /* Audio player styling */
+        .audio-player-wrap {
+            margin-top: 0.75rem;
+            padding: 0.65rem 0.9rem;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
-        .results-pct {
+        .audio-player-wrap .audio-label {
             font-family: 'Source Sans 3', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
         }
+        .audio-player-wrap audio { height: 28px; flex: 1; min-width: 0; }
         .footer-note {
             text-align: center;
             color: #999;
             font-size: 0.8rem;
             font-family: 'Source Sans 3', sans-serif;
             margin-top: 2rem;
-            padding: 1rem;
+            padding: 1.5rem 1rem;
+            border-top: 1px solid #ddd;
         }
         @media (max-width: 600px) {
             .header { padding: 0.75rem 1rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+            .header h1 { display: none; }
             .container { padding: 1.25rem 1rem; }
             .card { padding: 1.25rem; }
             .situation-title { font-size: 1.2rem; }
@@ -453,444 +399,849 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-left">
-            <span class="logo">MGMT 494BI</span>
-            <h1>Midterm Makeup · Brennan &amp; Hale Audio</h1>
-        </div>
-        <div class="header-right">
-            <div id="timer-display" class="timer" style="display:none;">
-                <span class="timer-label">Time Remaining</span>
-                <span class="timer-value" id="timer-value">45:00</span>
-            </div>
-            <span class="secure-badge" id="secure-badge">Open-Note Examination</span>
-        </div>
-    </div>
 
-    <!-- ─── AUTH SCREEN ───────────────────────────────────────────────── -->
-    <div id="auth-screen" class="screen active">
+<div class="header">
+    <div class="header-left">
+        <span class="logo">MGMT 494BI</span>
+        <h1>Midterm Makeup &middot; Brennan &amp; Hale Audio</h1>
+    </div>
+    <div class="header-right">
+        <div id="timer-display" class="timer" style="display:none;">
+            <span class="timer-label">Time Remaining</span>
+            <span class="timer-value" id="timer-value">45:00</span>
+        </div>
+        <span class="secure-badge" id="secure-badge">Open-Note Examination</span>
+    </div>
+</div>
+
+<!-- ─── AUTH ────────────────────────────────────────────────────────── -->
+<div id="auth-screen" class="screen active">
+    <div class="card">
+        <h2>Secure Access</h2>
+        <h3 style="margin-bottom:1.25rem;">Enter your credentials</h3>
+        <div class="field-group">
+            <label class="field-label" for="student-id">Your 8-digit Student ID</label>
+            <input type="text" id="student-id" class="text-input" placeholder="e.g., 34000000" autocomplete="off" inputmode="numeric" maxlength="8">
+        </div>
+        <div class="field-group" style="margin-bottom:1.5rem;">
+            <label class="field-label" for="access-code">Access Code</label>
+            <input type="text" id="access-code" class="text-input" placeholder="Provided by your instructor" autocomplete="off">
+        </div>
+        <button id="auth-btn" class="btn">Begin Examination</button>
+        <div id="auth-error" style="color:var(--danger);font-size:0.85rem;margin-top:1rem;display:none;"></div>
+    </div>
+</div>
+
+<!-- ─── INTRO ────────────────────────────────────────────────────────── -->
+<div id="intro-screen" class="screen">
+    <div class="container">
         <div class="card">
-            <h2>Secure Access</h2>
-            <h3 style="margin-bottom: 1.25rem;">Enter your credentials</h3>
-            <div class="field-group" style="margin-bottom: 1rem;">
-                <label class="field-label" for="student-id">Your 8-digit Student ID</label>
-                <input type="text" id="student-id" class="text-input" placeholder="e.g., 34000000" autocomplete="off" inputmode="numeric" maxlength="8">
+            <h2>How This Examination Works</h2>
+            <div class="prose">
+                <p>This is your makeup midterm for MGMT 494BI: Business Policy &amp; Strategy. It tests the same skills as the in-class midterm — value creation, activity systems, brand protection, and Five Forces — through 20 multiple-choice questions.</p>
+
+                <p><strong>Format:</strong> You will read a brief case about Brennan &amp; Hale Audio, a company facing four strategic decisions. At each decision point, you will be presented with <em>two strategic paths</em> the team considered. You choose which path you want to analyze — then answer 5 questions about the logic, tradeoffs, and frameworks for that path.</p>
+
+                <p><strong>The choice itself is not graded. Both paths are legitimate strategic framings.</strong> Your grade comes entirely from how well you answer the 5 questions that follow your chosen path.</p>
+
+                <p><strong>Total questions:</strong> 20 (5 per situation, four situations). <strong>Scoring:</strong> 5 points per correct answer = 100 points total.</p>
             </div>
-            <div class="field-group" style="margin-bottom: 1.5rem;">
-                <label class="field-label" for="access-code">Access Code</label>
-                <input type="text" id="access-code" class="text-input" placeholder="Provided by your instructor" autocomplete="off">
+
+            <div class="notice">
+                <strong>Open-note rules:</strong>
+                <ul style="margin-top:0.4rem;margin-left:1.25rem;">
+                    <li>You <strong>may</strong> use class slides, the Rothaermel textbook, the Five Forces deck, your own notes, and any 494BI course materials</li>
+                    <li>You <strong>may not</strong> work with other students</li>
+                    <li>You <strong>may not</strong> use AI tools (ChatGPT, Claude, Gemini, etc.) to generate or evaluate answers</li>
+                </ul>
             </div>
-            <button id="auth-btn" class="btn">Begin Examination</button>
-            <div id="auth-error" style="color: var(--danger); font-size: 0.85rem; margin-top: 1rem; display: none;"></div>
-        </div>
-    </div>
 
-    <!-- ─── INSTRUCTIONS SCREEN ──────────────────────────────────────── -->
-    <div id="intro-screen" class="screen">
-        <div class="container">
-            <div class="card">
-                <h2>How This Examination Works</h2>
-                <div class="prose">
-                    <p>This is your makeup midterm for MGMT 494BI: Business Policy &amp; Strategy. It is designed to test the same skills as the in-class midterm — application of strategy concepts (value creation, activity systems, brand protection, Five Forces) to a realistic case — through 20 multiple-choice questions.</p>
+            <div class="notice notice-info">
+                <strong>How locking works:</strong> Within each situation, you may change your answer as many times as you like. When you click <em>Confirm Answers &amp; Continue</em>, those 5 answers are locked — you cannot return to earlier situations.
+            </div>
 
-                    <p><strong>Format:</strong> You will read a brief case about Brennan &amp; Hale Audio, a company facing four strategic decisions. The strategy team has already chosen a path on each decision. Your job is to answer the multiple-choice questions that follow each situation — the questions test whether you understand the strategic logic, can apply the relevant frameworks, and can recognize good and bad reasoning.</p>
+            <div class="notice" style="margin-top:0.75rem;">
+                <strong>Time limit:</strong> 45 minutes, starting the moment you proceed from the case background to Situation Alpha. The timer is shown in the header. When time runs out, the exam is submitted automatically.
+            </div>
 
-                    <p><strong>Total questions:</strong> 20 (5 per situation, four situations)</p>
-                    <p><strong>Scoring:</strong> 5 points per correct answer = <strong>100 points total</strong>.</p>
-                    <p><strong>Time:</strong> Plan for approximately 60 minutes. There is no enforced time limit, but the exam is designed to be completed in one focused sitting.</p>
-                </div>
-
-                <div class="notice">
-                    <strong>Open-note rules:</strong>
-                    <ul style="margin-top: 0.4rem; margin-left: 1.25rem;">
-                        <li>You <strong>may</strong> use class slides, the Rothaermel textbook, the Five Forces deck, your own notes, and any 494BI course materials</li>
-                        <li>You <strong>may not</strong> work with other students</li>
-                        <li>You <strong>may not</strong> use AI tools (ChatGPT, Claude, Gemini, etc.) to generate or evaluate answers</li>
-                        <li>Your reasoning should reflect your own thinking</li>
-                    </ul>
-                </div>
-
-                <div class="notice notice-info">
-                    <strong>How answering works:</strong> Within each section, you can change your answer to any question as many times as you want. When you are satisfied with all 5 answers in a section, click <em>Submit Section Answers</em>. Once a section is submitted, those 5 answers are locked. Sections are submitted in order: Alpha → Beta → Gamma → Delta. After all four sections are submitted, click <em>Submit Exam &amp; See Results</em> to finalize.
-                </div>
-
-                <div class="prose" style="margin-top: 1rem;">
-                    <p><strong>Submission:</strong> When you finish all 20 questions, click <em>Submit Exam</em>. Your score will be calculated automatically, displayed on screen, and recorded for your instructor. There is no further submission required.</p>
-                </div>
-
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button id="to-case-btn" class="btn">Continue to the Case</button>
-                </div>
+            <div style="text-align:center;margin-top:1.5rem;">
+                <button class="btn" onclick="showScreen('case-screen')">Continue to the Case</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ─── CASE INTRO SCREEN ────────────────────────────────────────── -->
-    <div id="case-screen" class="screen">
-        <div class="container">
-            <div class="card">
-                <h2>The Company</h2>
-                <h3>Brennan &amp; Hale Audio · Burlington, Vermont</h3>
-                <div class="prose">
-                    <p>Brennan &amp; Hale Audio was founded in 1978 in Burlington, Vermont, by two former Bell Labs engineers — Margaret Brennan and Tom Hale — who were convinced that mainstream consumer audio had drifted toward marketing gimmicks and away from sound quality. They started by hand-building a single bookshelf speaker called the BH-1, sold by mail order to a small but obsessive community of audiophiles.</p>
+<!-- ─── CASE INTRO ───────────────────────────────────────────────────── -->
+<div id="case-screen" class="screen">
+    <div class="container">
+        <div class="card">
+            <h2>The Company</h2>
+            <h3>Brennan &amp; Hale Audio &middot; Burlington, Vermont</h3>
+            <div class="prose">
+                <p>Brennan &amp; Hale Audio was founded in 1978 in Burlington, Vermont, by two former Bell Labs engineers — Margaret Brennan and Tom Hale — who were convinced that mainstream consumer audio had drifted toward marketing gimmicks and away from sound quality. They started by hand-building a single bookshelf speaker called the BH-1, sold by mail order to a small but obsessive community of audiophiles.</p>
 
-                    <p>Forty-eight years later, Brennan &amp; Hale is a $310 million revenue company that still hand-assembles its flagship speakers in Vermont, but has expanded into headphones, integrated amplifiers, and — most recently — a wireless multi-room system that competes loosely with Sonos at the high end. The company is privately held. The founders retired in 2008. The current CEO, Anjali Desai, took over in 2020 and has been pushing the company to professionalize its operations without losing what makes it special.</p>
+                <p>Forty-eight years later, Brennan &amp; Hale is a $310 million revenue company that still hand-assembles its flagship speakers in Vermont, but has expanded into headphones, integrated amplifiers, and — most recently — a wireless multi-room system that competes loosely with Sonos at the high end. The company is privately held. The founders retired in 2008. The current CEO, Anjali Desai, took over in 2020 and has been pushing the company to professionalize its operations without losing what makes it special.</p>
 
-                    <p>Brennan &amp; Hale's customers are not casual buyers. They read reviews, attend listening sessions, and treat speaker selection like a religious decision. Average selling price across the line is roughly four times the consumer-electronics industry median. The company has never advertised on television. Its growth has come almost entirely from word of mouth, magazine reviews (<em>Stereophile</em>, <em>The Absolute Sound</em>), and a network of roughly 180 specialty audio dealers across North America and Europe — many of whom have carried the brand for decades.</p>
+                <p>Brennan &amp; Hale's customers are not casual buyers. They read reviews, attend listening sessions, and treat speaker selection like a religious decision. Average selling price across the line is roughly four times the consumer-electronics industry median. The company has never advertised on television. Its growth has come almost entirely from word of mouth, magazine reviews (<em>Stereophile</em>, <em>The Absolute Sound</em>), and a network of roughly 180 specialty audio dealers across North America and Europe — many of whom have carried the brand for decades.</p>
 
-                    <p>The audio industry has been changing fast. Wireless and streaming have upended the old separates-and-cables model. A new wave of well-funded startups (think KEF, Audeze, and a wave of Chinese-backed entrants like FiiO and HiFiMan) are competing aggressively on price and feature set. Sonos sits at one end of the market, owning convenience. The traditional luxury audio names — McIntosh, Wilson, Magico — sit at the other, owning prestige. Brennan &amp; Hale sits somewhere in the middle, with a reputation that is genuine but a market position that is starting to feel squeezed.</p>
+                <p>The audio industry has been changing fast. Wireless and streaming have upended the old separates-and-cables model. A new wave of well-funded startups (KEF, Audeze, FiiO, HiFiMan) are competing aggressively on price and feature set. Sonos sits at one end of the market, owning convenience. The traditional luxury audio names — McIntosh, Wilson, Magico — sit at the other, owning prestige. Brennan &amp; Hale sits somewhere in the middle, with a reputation that is genuine but a market position that is starting to feel squeezed.</p>
 
-                    <p>CEO Desai has assembled a small strategy team — and you are on it. The board has asked the team to bring forward recommendations on four strategic questions. The strategy team has chosen a path on each. Your job, on this examination, is to demonstrate that you understand the logic of those choices and can apply the relevant 494BI frameworks to test them.</p>
-                </div>
+                <p>CEO Desai has assembled a small strategy team — and you are on it. The board has asked the team to bring forward analysis on four strategic questions. At each decision point, two serious paths were considered. Your job is to demonstrate that you understand the strategic logic of whichever path you choose to analyze.</p>
 
-                <div class="notice" style="margin-top: 1.5rem;">
-                    <strong>Time limit:</strong> 45 minutes, starting the moment you click <em>Begin Section Alpha</em> below. The timer is shown in the top-right of every page. When time runs out, the exam will be submitted automatically with whatever answers you have entered — unanswered questions are scored as incorrect.
-                </div>
-                <div style="text-align: center; margin-top: 1rem;">
-                    <button id="to-questions-btn" class="btn">Begin Section Alpha (start 45-min timer)</button>
-                </div>
+                <p><strong>Activity system for reference:</strong> The ten activities that define B&amp;H's current competitive system are: (1) hand-assembly in Vermont, (2) 18-month engineering cycles, (3) specialty dealer network (180 dealers), (4) in-store listening rooms, (5) lifetime service guarantee, (6) no mass-market advertising, (7) editorial relationships with audiophile magazines, (8) privately held ownership, (9) pricing 3–5× industry median, and (10) 48-year continuous brand presence.</p>
+            </div>
+
+            <div style="text-align:center;margin-top:1.5rem;">
+                <button class="btn" onclick="beginExam()">Begin Situation Alpha &rarr; (starts 45-min timer)</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ─── EXAM SCREEN ──────────────────────────────────────────────── -->
-    <div id="exam-screen" class="screen">
-        <div class="container">
-            <div class="timeup-banner" id="timeup-banner">Time has expired. Your exam has been submitted automatically.</div>
-            <div class="progress-track" id="progress-track">
-                <div class="pt-step active"></div>
-                <div class="pt-step"></div>
-                <div class="pt-step"></div>
-                <div class="pt-step"></div>
+<!-- ─── ALPHA CHOICE ─────────────────────────────────────────────────── -->
+<div id="alpha-choice-screen" class="screen">
+    <div class="container">
+        <div class="timeup-banner" id="timeup-banner-alpha" style="display:none;">Time has expired. Your exam has been submitted automatically.</div>
+        <div class="progress-track">
+            <div class="pt-step active"></div><div class="pt-step"></div><div class="pt-step"></div><div class="pt-step"></div>
+        </div>
+        <div class="card">
+            <div class="situation-badge">Situation Alpha</div>
+            <div class="situation-title">Where Does the Value Come From?</div>
+            <div class="prose">
+                <p>The board has asked the strategy team to articulate, in plain language, <strong>how Brennan &amp; Hale actually creates value for its customers, and how it captures enough of that value to remain a healthy business</strong>. Two framings are on the table.</p>
+                <p style="background:var(--accent-light);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.5rem 0;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;"><strong>Your choice is not graded.</strong> Both framings are defensible. Choose the one you want to analyze, then answer the 5 questions that follow.</p>
             </div>
+        </div>
 
-            <div id="situations-container">
-                <!-- Sections injected by JS -->
-            </div>
-
-            <div class="submit-area" id="submit-area" style="display:none;">
-                <p id="submit-status">All four sections submitted. Click below to finalize and see your score.</p>
-                <button id="submit-btn" class="btn">Submit Exam &amp; See Results</button>
+        <div class="card">
+            <h2>Select Your Path — Situation Alpha</h2>
+            <button class="btn-choice" onclick="chooseAlpha('craft')">
+                <span class="choice-label">Path A — The Craft Story</span>
+                <span class="choice-title">Value created through hand-built quality and acoustic engineering</span>
+                <span class="choice-desc">B&amp;H creates value primarily through Vermont hand-assembly and proprietary acoustic engineering that mass-market competitors cannot replicate. The craftsmanship IS the causal mechanism. Value capture comes from ~52% gross margin on low volume through listening-room dealers.</span>
+            </button>
+            <button class="btn-choice" onclick="chooseAlpha('community')">
+                <span class="choice-label">Path B — The Community Story</span>
+                <span class="choice-title">Value created through 48-year audiophile reputation and community trust</span>
+                <span class="choice-desc">B&amp;H creates value primarily through its standing in the audiophile community — editorial press, dealer relationships, peer-to-peer certification. Craftsmanship is the evidence of legitimacy, not the causal mechanism. The mechanism is community trust that cannot be purchased or compressed.</span>
+            </button>
+            <div class="audio-player-wrap" id="audio-wrap-community" style="display:none;">
+                <span class="audio-label">🔊 Community Story narration</span>
+                <audio controls src="audio/community-story.mp3" preload="none"></audio>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ─── RESULTS SCREEN ───────────────────────────────────────────── -->
-    <div id="results-screen" class="screen">
-        <div class="container">
-            <div class="card results-card">
-                <h2>Examination Complete</h2>
-                <h3>Thank you, <span id="results-name">student</span>.</h3>
+<!-- ─── ALPHA QUESTIONS ──────────────────────────────────────────────── -->
+<div id="alpha-questions-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step active"></div><div class="pt-step"></div><div class="pt-step"></div><div class="pt-step"></div>
+        </div>
+        <div class="questions-header">
+            <div>
+                <div class="qh-label">Situation Alpha</div>
+                <div class="qh-value" id="alpha-qs-label">Alpha Questions</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="qh-label">Answered</div>
+                <div class="qh-value"><span id="alpha-answered">0</span> / 5</div>
+            </div>
+        </div>
+        <div id="alpha-questions-container"></div>
+        <div class="submit-area">
+            <p>Select an answer for each question. You may change your selection until you confirm.</p>
+            <button class="btn" id="alpha-confirm-btn" disabled onclick="confirmSection('alpha', function(){ showSituation('beta'); })">Confirm Answers &amp; Proceed to Situation Beta &rarr;</button>
+        </div>
+    </div>
+</div>
 
-                <div class="results-score" id="results-score">— / 100</div>
-                <div class="results-pct" id="results-pct">—%</div>
+<!-- ─── BETA CHOICE ──────────────────────────────────────────────────── -->
+<div id="beta-choice-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step active"></div><div class="pt-step"></div><div class="pt-step"></div>
+        </div>
+        <div class="card">
+            <div class="situation-badge">Situation Beta</div>
+            <div class="situation-title">The Channel Strategy</div>
+            <div class="prose">
+                <p>CEO Desai has asked the team to evaluate Brennan &amp; Hale's distribution strategy. The existing specialty dealer network is the company's primary channel — but there are geographic gaps and growing pressure to meet customers where they shop. Two directions are on the table.</p>
+                <p style="background:var(--accent-light);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.5rem 0;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;"><strong>Your choice is not graded.</strong> Both paths are legitimate strategic directions. Choose one and answer the 5 questions about its logic.</p>
+            </div>
+        </div>
 
-                <div class="prose" style="text-align: left; margin-top: 1.5rem;">
-                    <p>Your responses have been submitted to your instructor and recorded with your Student ID and Session ID. No further action is required from you.</p>
-                    <p>Your instructor will review your submission and post your midterm grade in due course.</p>
-                </div>
-
-                <div class="mono-info" style="margin-top: 1.5rem;">
-                    <div class="mi-label">Session ID (for your records)</div>
-                    <div class="mi-value" id="results-session-id">—</div>
-                </div>
-
-                <p class="footer-note" style="margin-top: 1rem; padding: 0;">You may now close this window.</p>
+        <div class="card">
+            <h2>Select Your Path — Situation Beta</h2>
+            <button class="btn-choice" onclick="chooseBeta('dtc')">
+                <span class="choice-label">Path A — Launch D2C E-Commerce (Hybrid)</span>
+                <span class="choice-title">Add direct-to-consumer sales alongside the dealer network</span>
+                <span class="choice-desc">Launch a full D2C website with home delivery, a 60-day in-home audition program, and a virtual listening-room tool. Keep existing dealers in a hybrid model. Capture dealer margin (~30–35%) on direct sales and reach geographic gaps in Texas, the Mountain West, and the U.S. South.</span>
+            </button>
+            <button class="btn-choice" onclick="chooseBeta('dealers')">
+                <span class="choice-label">Path B — Double Down on Dealers</span>
+                <span class="choice-title">Formally reject direct sales; deepen dealer exclusivity</span>
+                <span class="choice-desc">Reject D2C entirely. Deepen dealer relationships: introduce formal exclusive territories, dealer-only product premieres, and co-marketing investment. The bet: the dealer network is a credibility system, not just a sales channel, and deepening it beats bypassing it.</span>
+            </button>
+            <div class="audio-player-wrap" id="audio-wrap-dealers" style="display:none;">
+                <span class="audio-label">🔊 Double Down on Dealers narration</span>
+                <audio controls src="audio/double-down-dealers.mp3" preload="none"></audio>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="footer-note">MGMT 494BI · Business Policy &amp; Strategy · Isenberg School of Management · University of Massachusetts Amherst</div>
+<!-- ─── BETA QUESTIONS ───────────────────────────────────────────────── -->
+<div id="beta-questions-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step active"></div><div class="pt-step"></div><div class="pt-step"></div>
+        </div>
+        <div class="questions-header">
+            <div>
+                <div class="qh-label">Situation Beta</div>
+                <div class="qh-value" id="beta-qs-label">Beta Questions</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="qh-label">Answered</div>
+                <div class="qh-value"><span id="beta-answered">0</span> / 5</div>
+            </div>
+        </div>
+        <div id="beta-questions-container"></div>
+        <div class="submit-area">
+            <p>Select an answer for each question. You may change your selection until you confirm.</p>
+            <button class="btn" id="beta-confirm-btn" disabled onclick="confirmSection('beta', function(){ showSituation('gamma'); })">Confirm Answers &amp; Proceed to Situation Gamma &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── GAMMA CHOICE ─────────────────────────────────────────────────── -->
+<div id="gamma-choice-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step active"></div><div class="pt-step"></div>
+        </div>
+        <div class="card">
+            <div class="situation-badge">Situation Gamma</div>
+            <div class="situation-title">Brand Protection &amp; Co-Branding</div>
+            <div class="prose">
+                <p>Brennan &amp; Hale has been approached by <strong>Apex Mobility</strong>, a major U.S. luxury automaker, with a co-branding proposal: Apex would integrate Brennan &amp; Hale-branded audio systems as a premium upgrade option in its vehicles. The deal would generate approximately <strong>$42M in annual licensing and supply revenue</strong> (against $310M company revenue) and put the B&amp;H name in front of roughly 180,000 affluent buyers per year. The CEO and CFO favored accepting; Margaret Brennan (retired founder, board observer) was opposed. Two positions are on the table.</p>
+                <p style="background:var(--accent-light);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.5rem 0;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;"><strong>Your choice is not graded.</strong> Both positions are defensible. Choose one and answer the 5 questions about its logic.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Select Your Path — Situation Gamma</h2>
+            <button class="btn-choice" onclick="chooseGamma('decline')">
+                <span class="choice-label">Path A — Decline the Apex Deal</span>
+                <span class="choice-title">Protect brand standing; accept the foregone $42M</span>
+                <span class="choice-desc">Reject the Apex offer entirely. The 48-year audiophile-community reputation is an asset that cannot be rebuilt if damaged. The moment B&amp;H is publicly associated with mass-luxury automotive, the brand gets re-coded in ways that contract terms cannot prevent. The revenue is real; the risk is worse.</span>
+            </button>
+            <button class="btn-choice" onclick="chooseGamma('accept')">
+                <span class="choice-label">Path B — Accept Apex with Guardrails</span>
+                <span class="choice-title">Accept with four brand-protection conditions</span>
+                <span class="choice-desc">Accept — but only with strict guardrails: (1) top-tier Apex vehicle only, (2) B&amp;H controls the full signal chain end-to-end, (3) no badge dilution downstream to lower-tier vehicles, (4) exit rights + joint engineering review board. Managed risk at $42M/yr is preferable to foregone revenue.</span>
+            </button>
+            <div class="audio-player-wrap" id="audio-wrap-accept" style="display:none;">
+                <span class="audio-label">🔊 Accept Apex narration</span>
+                <audio controls src="audio/accept-apex.mp3" preload="none"></audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── GAMMA QUESTIONS ──────────────────────────────────────────────── -->
+<div id="gamma-questions-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step active"></div><div class="pt-step"></div>
+        </div>
+        <div class="questions-header">
+            <div>
+                <div class="qh-label">Situation Gamma</div>
+                <div class="qh-value" id="gamma-qs-label">Gamma Questions</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="qh-label">Answered</div>
+                <div class="qh-value"><span id="gamma-answered">0</span> / 5</div>
+            </div>
+        </div>
+        <div id="gamma-questions-container"></div>
+        <div class="submit-area">
+            <p>Select an answer for each question. You may change your selection until you confirm.</p>
+            <button class="btn" id="gamma-confirm-btn" disabled onclick="confirmSection('gamma', function(){ showSituation('delta'); })">Confirm Answers &amp; Proceed to Situation Delta &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── DELTA CHOICE ─────────────────────────────────────────────────── -->
+<div id="delta-choice-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step active"></div>
+        </div>
+        <div class="card">
+            <div class="situation-badge">Situation Delta</div>
+            <div class="situation-title">Industry Analysis &amp; Five Forces</div>
+            <div class="prose">
+                <p>The strategy team has been asked to conduct a Five Forces analysis. Before you can apply the framework, you must define the industry. Two definitions are on the table: a narrow audiophile definition and a broader premium connected home audio definition. Both are analytical choices with real strategic implications.</p>
+                <p style="background:var(--accent-light);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.5rem 0;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;"><strong>Your choice is not graded.</strong> Both industry definitions are defensible. Choose one and answer the 5 questions testing your Five Forces application.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Select Your Path — Situation Delta</h2>
+            <button class="btn-choice" onclick="chooseDelta('audiophile')">
+                <span class="choice-label">Path A — Premium Audiophile Equipment ($1,500+)</span>
+                <span class="choice-title">Narrow definition: specialty dealer segment, $1,500+ per unit</span>
+                <span class="choice-desc">Define the relevant industry as premium audiophile equipment — speakers, amplifiers, and headphones priced at $1,500+ per unit, sold primarily through specialty dealers. Competitors: McIntosh, Wilson Audio, Magico, KEF Reference, Focal, and ~30 boutique manufacturers.</span>
+            </button>
+            <button class="btn-choice" onclick="chooseDelta('connected')">
+                <span class="choice-label">Path B — Premium Connected Home Audio ($500+)</span>
+                <span class="choice-title">Broader definition: wireless, streaming, multi-room at $500+</span>
+                <span class="choice-desc">Define the relevant industry as premium connected home audio — wireless multi-room systems, premium soundbars, and integrated streaming amplifiers at $500+ per unit. Competitors now include Sonos, KEF Wireless, Audeze, premium headphone systems, and well-funded D2C brands.</span>
+            </button>
+            <div class="audio-player-wrap" id="audio-wrap-connected" style="display:none;">
+                <span class="audio-label">🔊 Connected Home definition narration</span>
+                <audio controls src="audio/connected-home.mp3" preload="none"></audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── DELTA QUESTIONS ──────────────────────────────────────────────── -->
+<div id="delta-questions-screen" class="screen">
+    <div class="container">
+        <div class="progress-track">
+            <div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step done"></div><div class="pt-step active"></div>
+        </div>
+        <div class="questions-header">
+            <div>
+                <div class="qh-label">Situation Delta</div>
+                <div class="qh-value" id="delta-qs-label">Delta Questions</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="qh-label">Answered</div>
+                <div class="qh-value"><span id="delta-answered">0</span> / 5</div>
+            </div>
+        </div>
+        <div id="delta-questions-container"></div>
+        <div class="submit-area">
+            <p>Final section — select an answer for each question, then submit.</p>
+            <button class="btn" id="delta-confirm-btn" disabled onclick="confirmSection('delta', submitExam)">Confirm Answers &amp; Submit Exam &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── RESULTS ──────────────────────────────────────────────────────── -->
+<div id="results-screen" class="screen">
+    <div class="container">
+        <div class="card results-card">
+            <h2>Examination Complete</h2>
+            <h3>Thank you, <span id="results-name">student</span>.</h3>
+            <div class="results-score" id="results-score">— / 100</div>
+            <div class="results-pct" id="results-pct">—%</div>
+            <div class="prose" style="text-align:left;margin-top:1.5rem;">
+                <p>Your responses have been submitted to your instructor. No further action is required.</p>
+            </div>
+            <div class="card" style="margin-top:1.5rem;padding:1.25rem;text-align:left;">
+                <h2>Your Path</h2>
+                <div class="path-display" id="results-path">—</div>
+            </div>
+            <div class="mono-info" style="margin-top:1rem;">
+                <div class="mi-label">Session ID (for your records)</div>
+                <div class="mi-value" id="results-session-id">—</div>
+            </div>
+        </div>
+        <div class="card" id="answer-review-card">
+            <h2>Answer Review</h2>
+            <div id="answers-review"></div>
+        </div>
+        <p class="footer-note" style="border:none;margin-top:0;">You may now close this window.</p>
+    </div>
+</div>
+
+<div class="footer-note">MGMT 494BI &middot; Business Policy &amp; Strategy &middot; Isenberg School of Management &middot; University of Massachusetts Amherst</div>
 
 <script>
-// ─── CONFIG ────────────────────────────────────────────────────────────────
+// ─── CONFIG ───────────────────────────────────────────────────────────────
 const ACCESS_CODE = "BH494";
-const TIME_LIMIT_SECONDS = 45 * 60;  // 45 minutes
-const WARNING_AT_SECONDS = 5 * 60;   // visual warning at 5:00 remaining
-// Google Form submission target (set after form creation):
-const FORM_URL = ""; // will be filled in after Google Form is created
-const FORM_ENTRY = {
-    studentId: "",   // entry.XXXXXXX
-    sessionId: "",
-    score:     "",
-    percentage:"",
-    answers:   ""
-};
+const TIME_LIMIT_SECONDS = 45 * 60;
+const WARNING_AT_SECONDS = 5 * 60;
+const FORM_URL = "";
+const FORM_ENTRY = { studentId: "", sessionId: "", score: "", percentage: "", answers: "", path: "" };
 
-// ─── QUESTION BANK ────────────────────────────────────────────────────────
-const SITUATIONS = [
-    {
-        id: "alpha",
-        badge: "Situation Alpha",
-        title: "Where Does the Value Come From?",
-        intro: `<p>The board has asked the strategy team to articulate, in plain language, <strong>how Brennan &amp; Hale actually creates value for its customers, and how it captures enough of that value to remain a healthy business</strong>.</p>
-                <p>The team has chosen <strong>The Craft Story</strong>: Brennan &amp; Hale creates value primarily through hand-built quality and acoustic engineering that mass-market competitors cannot replicate. Customers pay a premium because the products genuinely sound different — better — and because the Vermont assembly, the lifetime service guarantee, and the founder-engineering heritage are part of what they are buying. Value capture comes from a high gross margin per unit (~52%) on relatively low volume, sold through dealers who can demonstrate the products in proper listening rooms.</p>
-                <p>The 5 questions below test your understanding of the Craft Story's strategic logic.</p>`,
-        questions: [
-            {
-                id: "q1",
-                stem: "Under the Craft Story, the <em>causal mechanism</em> by which Brennan &amp; Hale creates value for its customers is best described as:",
-                choices: {
-                    A: "Brennan &amp; Hale charges a high price, which signals quality to consumers and creates a perception of value that justifies the premium — this conflates value capture (pricing) with value creation, and reverses the causal direction; price signals reinforce value perception only when an underlying value-creation mechanism exists to support them.",
-                    B: "Hand-assembly in Vermont and proprietary acoustic engineering produce measurable product differences (driver matching, cabinet resonance control, voicing precision) that mass-market competitors cannot replicate at any price point because these differences depend on tacit, low-volume craftsmanship.",
-                    C: "Brennan &amp; Hale's 48-year continuous brand presence creates customer loyalty through familiarity and habit, which is the dominant mechanism for premium pricing in mature consumer-electronics categories — this is closer to the Community Story (which the team did <em>not</em> choose) and treats brand familiarity as a creation mechanism rather than a value-capture support mechanism.",
-                    D: "Brennan &amp; Hale's specialty dealer network restricts distribution, which artificially limits supply and drives prices up through scarcity — restricted distribution is a value-capture mechanism (it preserves dealer margins and price integrity), not a value-creation mechanism; scarcity alone does not create willingness to pay if the product is not differentiated."
-                },
-                correct: "B"
-            },
-            {
-                id: "q2",
-                stem: "The single most important reason Brennan &amp; Hale captures (rather than loses) the value it creates under the Craft Story is:",
-                choices: {
-                    A: "Tacit engineering knowledge accumulated over 48 years is an isolating mechanism — competitors with more capital cannot simply purchase the ability to voice a speaker or hand-tune a driver array, so the value B&amp;H creates does not leak to imitators.",
-                    B: "Brennan &amp; Hale's customers are individual consumers who have low bargaining power, so the company can charge whatever it wants — buyer concentration is one factor in value capture, but it does not isolate B&amp;H from rivalry-based price erosion if a competitor matches its product.",
-                    C: "Brennan &amp; Hale's specialty dealers provide listening rooms, which generate enough word-of-mouth marketing to make competitive challenges irrelevant — dealer-driven marketing is a support mechanism but does not isolate B&amp;H from competitors who could open their own listening rooms.",
-                    D: "Brennan &amp; Hale operates at a high gross margin (52%) per unit, which demonstrates that value capture is working — this is an outcome, not a mechanism; high margin is the <em>evidence</em> of capture, not the <em>reason</em> capture is occurring."
-                },
-                correct: "A"
-            },
-            {
-                id: "q3",
-                stem: "The CEO is considering closing the weakest 50 of 180 dealers and concentrating volume in the strongest 130. Under the Craft Story, the strongest case for supporting this move depends on which assumption?",
-                choices: {
-                    A: "The weakest 50 dealers will be replaced by Brennan &amp; Hale's planned direct-to-consumer e-commerce channel, so closure carries no geographic coverage cost — this assumes a separate strategic decision (D2C) and is not a clean justification for the cut on its own merits.",
-                    B: "The weakest 50 dealers contribute less than 10% of revenue, so closing them produces a meaningful cost reduction with minimal sales impact — this is a financial-efficiency assumption, not a strategy assumption tied specifically to the Craft Story.",
-                    C: "The weakest 50 dealers do not maintain proper listening-room conditions or trained staff, so they actively <em>damage</em> the customer experience that supports the Craft Story — closing them strengthens, rather than weakens, the value-creation mechanism.",
-                    D: "The strongest 130 dealers want exclusive territories and will pressure B&amp;H to consolidate regardless — this describes <em>who is asking</em> for the change but not <em>why</em> the change makes the company stronger."
-                },
-                correct: "C"
-            },
-            {
-                id: "q4",
-                stem: "A junior analyst proposes that Brennan &amp; Hale launch a $399 wireless speaker to capture younger consumers. Under the Craft Story, the single biggest strategic flaw in this proposal is:",
-                choices: {
-                    A: "Brennan &amp; Hale does not have wireless engineering capability and would need to acquire it — a capabilities gap can be closed; this does not by itself explain why the move is misaligned with the Craft Story's logic.",
-                    B: "A $399 price point is below the threshold at which younger consumers perceive premium audio products as serious — a positioning critique, but not the central flaw; the proposal could be defensible at $399 under a different value-creation framework.",
-                    C: "A $399 mass-market wireless speaker cannot be hand-assembled in Vermont at the company's gross margin model, so the product would have to be manufactured under a different production system — which severs the Craft Story's value-creation mechanism while still carrying the Brennan &amp; Hale name.",
-                    D: "The wireless speaker market is dominated by Sonos, which has scale advantages B&amp;H cannot match — a competitive observation about the target segment, but the deeper flaw is internal: even if Sonos did not exist, the proposal would still violate the Craft Story."
-                },
-                correct: "C"
-            },
-            {
-                id: "q5",
-                stem: "If Brennan &amp; Hale wants to make its products accessible to younger consumers without violating the Craft Story, the strongest approach is:",
-                choices: {
-                    A: "Launch a separate sub-brand at a lower price point — this <em>partially</em> protects the Craft Story but introduces brand-architecture risk (sub-brands frequently re-converge with the parent in consumer perception) and does not solve the underlying production-system mismatch.",
-                    B: "Cut prices on existing flagship products by 25% — preserves the production system but destroys value capture; lower prices on the same products signal either reduced quality or weakened pricing power.",
-                    C: "License the Brennan &amp; Hale name to a wireless-speaker manufacturer in exchange for royalties — this severs the company's control over the value-creation mechanism entirely and monetizes the brand at the cost of the underlying asset.",
-                    D: "Offer financing, certified-used programs, and dealer demo events that lower the <em>cost of access</em> to existing flagship products without lowering the <em>price</em> — this preserves the value-creation mechanism, expands the audience, and maintains pricing integrity."
-                },
-                correct: "D"
-            }
-        ]
+// ─── QUESTION BANK (40 questions total — 8 paths × 5 Qs) ─────────────────
+const QUESTIONS = {
+
+// ══════════════════════════════════════════════════════════════════════════
+// ALPHA — CRAFT STORY (original 5)
+// ══════════════════════════════════════════════════════════════════════════
+alpha_craft: [
+  {
+    stem: "Under the Craft Story, the <em>causal mechanism</em> by which Brennan &amp; Hale creates value for its customers is best described as:",
+    choices: {
+      A: "Brennan &amp; Hale charges a high price, which signals quality to consumers and creates a perception of value that justifies the premium — this conflates value capture (pricing) with value creation, and reverses the causal direction; price signals reinforce value perception only when an underlying value-creation mechanism exists to support them.",
+      B: "Hand-assembly in Vermont and proprietary acoustic engineering produce measurable product differences (driver matching, cabinet resonance control, voicing precision) that mass-market competitors cannot replicate at any price point because these differences depend on tacit, low-volume craftsmanship.",
+      C: "Brennan &amp; Hale's 48-year continuous brand presence creates customer loyalty through familiarity and habit, which is the dominant mechanism for premium pricing in mature consumer-electronics categories — this is closer to the Community Story and treats brand familiarity as a creation mechanism rather than a value-capture support mechanism.",
+      D: "Brennan &amp; Hale's specialty dealer network restricts distribution, which artificially limits supply and drives prices up through scarcity — restricted distribution is a value-capture mechanism (it preserves dealer margins and price integrity), not a value-creation mechanism; scarcity alone does not create willingness to pay if the product is not differentiated."
     },
-    {
-        id: "beta",
-        badge: "Situation Beta",
-        title: "The Activity System",
-        intro: `<p>CEO Desai has asked the team to evaluate whether Brennan &amp; Hale should <strong>launch direct-to-consumer e-commerce alongside the existing dealer network</strong>. The strategy team has approved the move: a full direct-to-consumer website with home delivery, a 60-day in-home audition program, and a virtual listening-room tool. Existing dealers will continue to operate, in a hybrid model. The expected benefit is access to customers in regions where dealers are weak (Texas, the Mountain West, much of the U.S. South), reduced dependence on dealers, and capture of dealer margin (typically 30–35%) on direct sales.</p>
-                <p>The 5 questions below test your understanding of the strategic fit between this move and Brennan &amp; Hale's existing activity system. Recall the 10 candidate activities: hand-assembly in Vermont, 18-month engineering cycles, specialty dealer network (180 dealers), in-store listening rooms, lifetime service, no mass-market advertising, editorial relationships with audiophile magazines, privately held ownership, pricing 3–5x industry median, and 48-year continuous brand presence.</p>`,
-        questions: [
-            {
-                id: "q6",
-                stem: "Of the activities listed, the one most directly strained by launching D2C e-commerce alongside the existing dealer network is:",
-                choices: {
-                    A: "Specialty dealer network — dealers carry B&amp;H precisely because B&amp;H has <em>not</em> sold direct; introducing a D2C channel converts dealers into a price-protected secondary tier and threatens the trust-based relationship the network depends on.",
-                    B: "Hand-assembly in Vermont — D2C does not change production volume or method; the same units are produced regardless of channel.",
-                    C: "18-month engineering cycles — engineering cycles operate independently of channel structure and are not affected by D2C in the short or medium term.",
-                    D: "Editorial relationships with audiophile magazines — magazines review products on product merit; the channel through which a unit is sold does not affect its acoustic performance or review reception."
-                },
-                correct: "A"
-            },
-            {
-                id: "q7",
-                stem: "To execute D2C successfully, Brennan &amp; Hale must develop digital marketing and customer-acquisition capabilities. The single greatest tension this creates with the existing activity system is:",
-                choices: {
-                    A: "Digital marketing requires data-analytics infrastructure that Brennan &amp; Hale does not currently have — a true capability gap, but it can be built or contracted; the gap itself does not create strategic <em>tension</em> with the activity system.",
-                    B: "Digital marketing requires mass-audience customer-acquisition campaigns, which are in direct tension with B&amp;H's <em>no television, no mass-market advertising</em> identity — a core component of the activity system that signals exclusivity and editorial focus.",
-                    C: "Digital marketing budgets are typically larger than dealer-cooperative marketing budgets, so D2C will require capital reallocation — a budgeting consequence, not an activity-system tension.",
-                    D: "Digital marketing introduces measurement metrics (CAC, LTV, conversion rate) that require new financial reporting — an operational change, not an activity-system tension."
-                },
-                correct: "B"
-            },
-            {
-                id: "q8",
-                stem: "<strong>IF</strong> Brennan &amp; Hale's D2C launch succeeds and grows to 30% of total revenue within three years, <strong>THEN</strong> the most likely downstream change required to preserve activity-system coherence is:",
-                choices: {
-                    A: "Brennan &amp; Hale will need to invest in additional in-store listening rooms at remaining dealer locations to differentiate the dealer experience — this preserves dealer activity but does not resolve the structural conflict between D2C and dealer channels.",
-                    B: "Brennan &amp; Hale will need to expand its product line to include more affordable products that fit D2C distribution — this conflates two separate strategic decisions; D2C success does not automatically require new SKUs and would in fact be undermined by them.",
-                    C: "Brennan &amp; Hale will need to relocate manufacturing to a higher-volume facility outside Vermont — D2C does not, on its own, drive a manufacturing-volume problem; the issue D2C creates is downstream channel structure.",
-                    D: "Brennan &amp; Hale will need to formally restructure or reduce its dealer network — the hybrid D2C/dealer model is structurally unstable at scale, and one channel will eventually have to be deprioritized."
-                },
-                correct: "D"
-            },
-            {
-                id: "q9",
-                stem: "Within the first 90 days of executing D2C, the single most important operational decision is:",
-                choices: {
-                    A: "Selecting an e-commerce platform (Shopify, custom build, Salesforce Commerce) — platform selection matters but is technical and reversible; the wrong platform can be migrated later.",
-                    B: "Hiring a Director of Digital Marketing — staffing matters but does not resolve the strategic question; the hiring decision is downstream of the policy decision.",
-                    C: "Defining the dealer-protection policy — which products will and will not be sold D2C, how dealer leads will be handed off, and how price integrity will be maintained across channels; this policy sets the precedent for the dealer relationship and determines whether the hybrid model is sustainable.",
-                    D: "Building the customer-data infrastructure to support analytics — data infrastructure matters for long-term D2C performance but is not a 90-day priority; data systems can be built progressively as the channel scales."
-                },
-                correct: "C"
-            },
-            {
-                id: "q10",
-                stem: "Of the existing activity-system elements, the one that most <em>reinforces</em> the success of D2C — and is therefore an asset rather than a constraint — is:",
-                choices: {
-                    A: "The 48-year continuous brand presence and editorial reputation — customers searching online for premium audio are drawn first to brands with established audiophile credibility, and B&amp;H's reputation is the asset that brings inbound traffic without paid acquisition.",
-                    B: "Hand-assembly in Vermont — a value-creation asset, but it does not differentially reinforce D2C; the same hand-assembly applies whether the product is sold through a dealer or direct.",
-                    C: "Specialty dealer network — the dealer network is a constraint on D2C, not a reinforcement; dealer economic interest is in opposition to direct sales.",
-                    D: "Lifetime service and parts availability — a customer-trust asset that supports premium pricing across all channels, but it does not differentially reinforce D2C versus dealer channels."
-                },
-                correct: "A"
-            }
-        ]
+    correct: "B"
+  },
+  {
+    stem: "The single most important reason Brennan &amp; Hale captures (rather than loses) the value it creates under the Craft Story is:",
+    choices: {
+      A: "Tacit engineering knowledge accumulated over 48 years is an isolating mechanism — competitors with more capital cannot simply purchase the ability to voice a speaker or hand-tune a driver array, so the value B&amp;H creates does not leak to imitators.",
+      B: "Brennan &amp; Hale's customers are individual consumers who have low bargaining power, so the company can charge whatever it wants — buyer concentration is one factor in value capture, but it does not isolate B&amp;H from rivalry-based price erosion if a competitor matches its product.",
+      C: "Brennan &amp; Hale's specialty dealers provide listening rooms, which generate enough word-of-mouth marketing to make competitive challenges irrelevant — dealer-driven marketing is a support mechanism but does not isolate B&amp;H from competitors who could open their own listening rooms.",
+      D: "Brennan &amp; Hale operates at a high gross margin (52%) per unit, which demonstrates that value capture is working — this is an outcome, not a mechanism; high margin is the <em>evidence</em> of capture, not the <em>reason</em> capture is occurring."
     },
-    {
-        id: "gamma",
-        badge: "Situation Gamma",
-        title: "Brand Protection &amp; Co-Branding",
-        intro: `<p>Brennan &amp; Hale has been approached by <strong>Apex Mobility</strong>, a major U.S. luxury automaker, with a co-branding proposal: Apex would integrate Brennan &amp; Hale-branded audio systems as a premium upgrade option in its top three vehicle models. The deal would generate approximately $42M in annual licensing and supply revenue (against $310M total company revenue) and would put the Brennan &amp; Hale name in front of approximately 180,000 affluent buyers per year.</p>
-                <p>The CEO and CFO favored accepting. Margaret Brennan, retired but still influential as a board observer, was opposed. <strong>The strategy team has chosen to decline the Apex deal</strong> — accepting the foregone $42M in annual revenue rather than risk the brand's standing with the audiophile community.</p>
-                <p>The 5 questions below test your understanding of the brand-protection logic behind this choice.</p>`,
-        questions: [
-            {
-                id: "q11",
-                stem: "The single most important brand-equity element placed at risk by the Apex Mobility co-branding deal is:",
-                choices: {
-                    A: "Brennan &amp; Hale's product-quality reputation — co-branded automotive audio is technically distinct from home audio and would be evaluated on its own merits; quality reputation is a real concern but is not the <em>most</em> fragile element.",
-                    B: "Brennan &amp; Hale's pricing power — the deal does not change Brennan &amp; Hale's home-audio pricing structure; pricing power is downstream of brand equity and would only be affected indirectly.",
-                    C: "Brennan &amp; Hale's standing in the audiophile community and editorial press — a reputation built over 48 years gets re-coded the moment the company is publicly associated with mass-luxury automotive context, and this association cannot be unwound by contract terms.",
-                    D: "Brennan &amp; Hale's dealer-network economics — dealers may have <em>opinions</em> about the deal, but the deal does not directly compete with dealer revenue or change dealer margins."
-                },
-                correct: "C"
-            },
-            {
-                id: "q12",
-                stem: "The strongest strategic argument for declining the Apex deal — accepting the foregone $42M in annual revenue — is:",
-                choices: {
-                    A: "$42M is a small fraction of Brennan &amp; Hale's $310M revenue base, so the foregone revenue is not material — a financial-materiality argument, but it understates what the company is leaving on the table and is not the central strategic logic.",
-                    B: "The audiophile-community reputation Brennan &amp; Hale has built over 48 years is an asset that compounds over time and cannot be rebuilt if damaged; trading 48 years of compounded brand equity for a 13.5% top-line lift is asymmetric in a way that contract terms cannot mitigate.",
-                    C: "Apex Mobility may go bankrupt or change ownership during the contract term, exposing B&amp;H to reputational risk from a partner over which it has no control — a counterparty-risk argument, addressed through contract terms (termination rights), not by declining outright.",
-                    D: "The deal would require Brennan &amp; Hale to expand its engineering team to support automotive applications, distracting from core flagship work — an opportunity-cost argument; engineering capacity can be expanded, and the strategic reason is brand integrity, not engineering."
-                },
-                correct: "B"
-            },
-            {
-                id: "q13",
-                stem: "A board member supporting the deal argues: <em>“Bose-Cadillac and Burmester-Mercedes partnerships have not damaged those brands. There is no reason to think the Apex deal would damage ours.”</em> The single biggest flaw in this argument is:",
-                choices: {
-                    A: "Bose was already mass-market-positioned (Wave Radio, QuietComfort headphones, Bose Stores in malls) before any automotive deal, and Burmester partners only with vehicles whose positioning matches its $150K+ home audio prestige (Mercedes-Maybach and S-Class) — neither precedent maps to Brennan &amp; Hale.",
-                    B: "Bose and Burmester are larger companies than Brennan &amp; Hale and have more financial cushion to absorb brand damage — a financial-resilience point, not a contextual one; size does not determine whether a co-branding deal damages a brand.",
-                    C: "Bose and Burmester have public stock listings and quarterly reporting pressure that forces them to take revenue opportunities Brennan &amp; Hale, as a private company, can decline — ownership structure is a real difference but is not the contextual flaw.",
-                    D: "Bose and Burmester have automotive engineering teams that Brennan &amp; Hale lacks — a capabilities point, not a brand-positioning one; the analogy fails because the brand-positioning math is different for B&amp;H."
-                },
-                correct: "A"
-            },
-            {
-                id: "q14",
-                stem: "<strong>IF</strong> Brennan &amp; Hale declines the Apex deal and it turns out the company actually needed the growth, the single most important <em>leading</em> indicator of this failure to monitor is:",
-                choices: {
-                    A: "Annual revenue growth rate — revenue is a <em>lagging</em> indicator; by the time revenue declines reveal that a growth alternative was needed, the strategic window for an Apex-style deal will have closed.",
-                    B: "Number of new dealer signups — a distribution metric, not a growth-strategy one; B&amp;H could sign new dealers while losing share in the underlying segment.",
-                    C: "<em>Stereophile</em> and <em>Absolute Sound</em> review tone — review tone indicates brand health, not growth-strategy success; positive reviews can coexist with declining commercial relevance.",
-                    D: "The growth rate of the audiophile equipment segment relative to Brennan &amp; Hale's own growth rate — if the segment is growing while B&amp;H is flat or declining, the company is losing share, an early signal that brand protection alone is insufficient."
-                },
-                correct: "D"
-            },
-            {
-                id: "q15",
-                stem: "Having declined the Apex deal, the most coherent alternative growth path <em>consistent with</em> Brennan &amp; Hale's brand-protection logic is:",
-                choices: {
-                    A: "Co-brand with a luxury hospitality chain (e.g., Aman Resorts) for in-suite audio systems — closer contextual fit than Apex, but the same brand-protection objection applies (mass-property exposure, contextual association with non-audio luxury).",
-                    B: "Acquire or partner with a complementary high-end audio specialist (turntable maker, electronics specialist) whose positioning matches B&amp;H's — this expands B&amp;H's audiophile presence within the same value-creation framework, and the brand association is reinforcing rather than diluting.",
-                    C: "License the Brennan &amp; Hale name to a smartphone manufacturer for premium audio integration — this carries the same brand-protection objection as Apex (mass-market context, no control over end-product use) and is in fact more dilutive.",
-                    D: "Open Brennan &amp; Hale-branded retail stores in major cities — this competes directly with the dealer network, a strategic conflict separate from the Apex question."
-                },
-                correct: "B"
-            }
-        ]
+    correct: "A"
+  },
+  {
+    stem: "The CEO is considering closing the weakest 50 of 180 dealers and concentrating volume in the strongest 130. Under the Craft Story, the strongest case for supporting this move depends on which assumption?",
+    choices: {
+      A: "The weakest 50 dealers will be replaced by Brennan &amp; Hale's planned direct-to-consumer e-commerce channel, so closure carries no geographic coverage cost — this assumes a separate strategic decision (D2C) and is not a clean justification for the cut on its own merits.",
+      B: "The weakest 50 dealers contribute less than 10% of revenue, so closing them produces a meaningful cost reduction with minimal sales impact — this is a financial-efficiency assumption, not a strategy assumption tied specifically to the Craft Story.",
+      C: "The weakest 50 dealers do not maintain proper listening-room conditions or trained staff, so they actively <em>damage</em> the customer experience that supports the Craft Story — closing them strengthens, rather than weakens, the value-creation mechanism.",
+      D: "The strongest 130 dealers want exclusive territories and will pressure B&amp;H to consolidate regardless — this describes <em>who is asking</em> for the change but not <em>why</em> the change makes the company stronger."
     },
-    {
-        id: "delta",
-        badge: "Situation Delta",
-        title: "Industry Analysis &amp; Five Forces",
-        intro: `<p>The strategy team has been asked to conduct a <strong>Five Forces analysis</strong> of the segment of the audio industry in which Brennan &amp; Hale most directly competes. Two industry definitions were considered: (a) the premium audiophile equipment industry — speakers, amplifiers, and headphones priced at $1,500+ per unit, sold primarily through specialty dealers, and (b) the premium connected home-audio industry — wireless multi-room speaker systems, premium soundbars, and integrated streaming amplifiers priced at $500+ per unit.</p>
-                <p>The team has chosen <strong>the premium audiophile equipment industry ($1,500+, specialty channels)</strong> as the relevant industry — the segment Brennan &amp; Hale has competed in for 48 years, with competitors including McIntosh, Wilson Audio, Magico, KEF Reference, Focal, and roughly 30 boutique manufacturers.</p>
-                <p>The 5 questions below test your application of Five Forces to this chosen industry.</p>`,
-        questions: [
-            {
-                id: "q16",
-                stem: "Within the premium audiophile equipment industry, the threat of new entrants is best assessed as:",
-                choices: {
-                    A: "LOW — capital requirements for engineering and dealer-network access are high, audiophile-press credibility takes years to build, and tacit acoustic-engineering knowledge cannot be hired into existence; together these create meaningful entry barriers.",
-                    B: "HIGH — the audio components market has many small new brands launching annually, particularly through D2C channels — this conflates the broader audio market with the audiophile equipment industry specifically; new D2C audio brands typically do not enter the $1,500+ specialty-dealer segment.",
-                    C: "MEDIUM — new entrants are growing in adjacent segments and could move upmarket — a forward-looking statement about adjacent threats, better captured under Substitutes than under New Entrants.",
-                    D: "HIGH — Chinese-backed entrants (FiiO, HiFiMan) are entering with lower-cost manufacturing — these compete primarily in headphones at sub-$1,500 price points, not in the $1,500+ specialty audiophile segment."
-                },
-                correct: "A"
-            },
-            {
-                id: "q17",
-                stem: "In the premium audiophile equipment industry, the bargaining power of buyers is best assessed as:",
-                choices: {
-                    A: "HIGH — wealthy audiophile buyers have many alternatives at the $1,500+ price point and can switch between brands — switching alternatives exist, but audiophile buyers face real switching costs (system matching, room tuning, dealer relationships) and have no aggregation, which overstates buyer leverage.",
-                    B: "MEDIUM — buyers can comparison-shop online through specialty audio forums and review aggregators — comparison-shopping reinforces purchase decisions in the audiophile segment rather than driving price negotiation.",
-                    C: "HIGH — specialty audio dealers serve as intermediary buyers with concentrated purchasing power — dealers are part of B&amp;H's distribution system, not arms-length buyers; they are channel partners with aligned incentives.",
-                    D: "LOW — audiophile buyers are individual consumers with no aggregation, switching costs are real (system matching, room tuning, dealer relationships), and buyers self-select into a price-tolerant segment where willingness-to-pay is decoupled from comparison shopping."
-                },
-                correct: "D"
-            },
-            {
-                id: "q18",
-                stem: "The threat of substitutes for premium audiophile equipment is best assessed as:",
-                choices: {
-                    A: "LOW — there are no substitutes for high-fidelity audio; consumers seeking audiophile-grade sound have no realistic alternatives — overstates audiophile exclusivity; high-end wireless systems and premium headphones do meaningfully substitute for some audiophile use-cases.",
-                    B: "MEDIUM — high-quality wireless and lifestyle audio (Sonos, KEF Wireless, premium headphones) is an imperfect but real substitute that pulls some demand from traditional audiophile equipment, particularly among younger consumers who weigh convenience alongside fidelity.",
-                    C: "HIGH — most audiophile consumers are price-sensitive and will substitute toward $500 wireless systems if they perceive value parity — misreads the audiophile segment, which by definition is not price-sensitive at the $1,500+ tier.",
-                    D: "LOW — substitution requires functional equivalence, and no wireless system can match the acoustic performance of dedicated audiophile equipment — functional equivalence is not the test for substitutes; substitutes need only solve the same consumer problem acceptably."
-                },
-                correct: "B"
-            },
-            {
-                id: "q19",
-                stem: "Of the five forces in the premium audiophile equipment industry, the force that <em>most heavily shapes profitability</em> is:",
-                choices: {
-                    A: "Bargaining power of suppliers — specialty driver and component suppliers (Scan-Speak, Mundorf) have some leverage, but multiple supplier options exist and switching is feasible; suppliers are not the dominant constraint on industry profitability.",
-                    B: "Threat of new entrants — limited by capital, reputation, and tacit knowledge; not the force most actively shaping profitability today, even if it remains a long-term watch item.",
-                    C: "Threat of substitutes — the slow erosion of demand toward lifestyle and wireless audio is the structural force that most actively shapes long-term profitability, because it pressures the size of the addressable market without yet pressuring per-unit margins.",
-                    D: "Bargaining power of buyers — audiophile buyers have low individual bargaining power, and this force is the <em>least</em> binding constraint on industry profitability, not the most."
-                },
-                correct: "C"
-            },
-            {
-                id: "q20",
-                stem: "A clear-eyed synthesis of the Five Forces analysis for the premium audiophile equipment industry concludes:",
-                choices: {
-                    A: "The industry is highly attractive — low new-entrant threat, low buyer power, and high switching costs combine to create a structurally protected segment for incumbents like B&amp;H — overstates the protection by understating substitute pressure.",
-                    B: "The industry is structurally unattractive — substitute pressure and slow market growth mean profitability will decline regardless of strategic positioning — overcorrects in the opposite direction; per-unit margins remain protected within the industry.",
-                    C: "The industry is structurally OK but slowly shrinking — per-unit profitability is preserved by low rivalry and strong buyer lock-in, but substitute pressure means total addressable market is at risk over the next decade; B&amp;H has a defensible position <em>if</em> it stays focused.",
-                    D: "The industry's attractiveness depends entirely on Brennan &amp; Hale's ability to defend its brand, since brand is the only meaningful differentiator at the $1,500+ price point — conflates company-level analysis with industry-level analysis; industry attractiveness does not depend on a single company's positioning."
-                },
-                correct: "C"
-            }
-        ]
-    }
-];
+    correct: "C"
+  },
+  {
+    stem: "A junior analyst proposes that Brennan &amp; Hale launch a $399 wireless speaker to capture younger consumers. Under the Craft Story, the single biggest strategic flaw in this proposal is:",
+    choices: {
+      A: "Brennan &amp; Hale does not have wireless engineering capability and would need to acquire it — a capabilities gap can be closed; this does not by itself explain why the move is misaligned with the Craft Story's logic.",
+      B: "A $399 price point is below the threshold at which younger consumers perceive premium audio products as serious — a positioning critique, but not the central flaw; the proposal could be defensible at $399 under a different value-creation framework.",
+      C: "A $399 mass-market wireless speaker cannot be hand-assembled in Vermont at the company's gross margin model, so the product would have to be manufactured under a different production system — which severs the Craft Story's value-creation mechanism while still carrying the Brennan &amp; Hale name.",
+      D: "The wireless speaker market is dominated by Sonos, which has scale advantages B&amp;H cannot match — a competitive observation about the target segment, but the deeper flaw is internal: even if Sonos did not exist, the proposal would still violate the Craft Story."
+    },
+    correct: "C"
+  },
+  {
+    stem: "If Brennan &amp; Hale wants to make its products accessible to younger consumers without violating the Craft Story, the strongest approach is:",
+    choices: {
+      A: "Launch a separate sub-brand at a lower price point — this partially protects the Craft Story but introduces brand-architecture risk (sub-brands frequently re-converge with the parent in consumer perception) and does not solve the underlying production-system mismatch.",
+      B: "Cut prices on existing flagship products by 25% — preserves the production system but destroys value capture; lower prices on the same products signal either reduced quality or weakened pricing power.",
+      C: "License the Brennan &amp; Hale name to a wireless-speaker manufacturer in exchange for royalties — this severs the company's control over the value-creation mechanism entirely and monetizes the brand at the cost of the underlying asset.",
+      D: "Offer financing, certified-used programs, and dealer demo events that lower the <em>cost of access</em> to existing flagship products without lowering the <em>price</em> — this preserves the value-creation mechanism, expands the audience, and maintains pricing integrity."
+    },
+    correct: "D"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// ALPHA — COMMUNITY STORY (new 5)
+// ══════════════════════════════════════════════════════════════════════════
+alpha_community: [
+  {
+    stem: "Under the Community Story, the <em>causal mechanism</em> by which Brennan &amp; Hale creates value for its customers is best described as:",
+    choices: {
+      A: "Brennan &amp; Hale's hand-assembly in Vermont and proprietary acoustic engineering produce measurable product differences that mass-market competitors cannot replicate — this describes the Craft Story; the Community Story explicitly treats craftsmanship as <em>evidence</em> of authenticity rather than as the causal mechanism of value creation.",
+      B: "The 48-year continuous brand presence creates a self-reinforcing ecosystem — editorial authority in <em>Stereophile</em> and <em>The Absolute Sound</em>, a community of audiophiles who verify quality claims peer-to-peer, and a dealer network that functions as knowledge hubs — such that customers pay a premium because the community itself certifies the product's legitimacy.",
+      C: "Restricting distribution to 180 specialty dealers creates scarcity, which in turn drives up perceived value through limited availability — scarcity-based pricing can support a premium, but it is a value-capture mechanism, not a value-creation mechanism; this framing does not explain why willingness to pay exists in the first place.",
+      D: "Brennan &amp; Hale charges prices 3–5× the industry median, which signals seriousness to audiophile buyers who use price as a quality heuristic — price signaling amplifies value perception but is downstream of, not prior to, value creation; under the Community Story, community trust creates the willingness to pay that pricing then captures."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Under the Community Story, the single most important isolating mechanism — the reason Brennan &amp; Hale captures rather than loses the value it creates — is:",
+    choices: {
+      A: "The tacit engineering knowledge accumulated over 48 years cannot be purchased or replicated by well-capitalized competitors — this describes the Craft Story's isolating mechanism; in the Community Story, engineering quality is <em>evidence</em> of legitimacy, not the core of what competitors cannot replicate.",
+      B: "The editorial relationships with <em>Stereophile</em> and <em>The Absolute Sound</em>, and the decades-long standing within the audiophile community, represent reputation capital that is path-dependent and essentially non-purchasable — a new entrant cannot buy 48-year standing; it must be earned through cumulative decisions across time, which competitors cannot compress or accelerate.",
+      C: "B&amp;H's specialty dealer network is under long-term exclusive supply contracts that legally prevent dealers from switching to competitors — while dealer loyalty is important to the Community Story, it is not primarily secured by legal exclusivity; dealers' commitment to B&amp;H reflects the brand's community standing, not contractual barriers.",
+      D: "The Brennan &amp; Hale name is protected by trademark registration in all major markets, which prevents competitors from using similar brand identifiers — trademark protection is a legal baseline, not a strategic isolating mechanism; many brands have trademark protection without the community standing that makes B&amp;H's reputation non-replicable."
+    },
+    correct: "B"
+  },
+  {
+    stem: "If the Community Story is the correct value-creation framing, the activity whose deterioration would most directly damage the value-creation mechanism is:",
+    choices: {
+      A: "Vermont hand-assembly and the physical craftsmanship process — the Community Story depends on Vermont provenance as a credibility signal, and moving manufacturing could generate immediate skepticism; however, within the Community Story framework, craftsmanship is evidence that supports the mechanism, not the mechanism itself — if community relationships and editorial standing remained intact, a thoughtfully managed manufacturing transition would not collapse the Community Story.",
+      B: "The active editorial relationship with audiophile press (<em>Stereophile</em>, <em>The Absolute Sound</em>) and the company's standing in the audiophile community — under the Community Story, the causal mechanism of value creation is community certification and editorial authority; if these relationships deteriorate — B&amp;H stops receiving meaningful <em>Stereophile</em> coverage or loses its Recommended Components status — the mechanism of value creation is directly damaged, not just the evidence supporting it.",
+      C: "The specialty dealer network and in-store listening rooms — dealer relationships are important because dealers are community hubs and primary settings for community certification experiences; however, the editorial press and online audiophile communities are the highest-authority certifiers, and their deterioration is more immediately damaging than dealer network weakening.",
+      D: "The 18-month engineering cycle and depth of investment in product development — engineering investment supports product quality, which provides the raw material for positive editorial reviews; but the causal chain runs <em>through</em> editorial and community certification, not through engineering directly; excellent engineering without community engagement would not, on its own, sustain the Community Story."
+    },
+    correct: "B"
+  },
+  {
+    stem: "A competitor launches a speaker at twice B&amp;H's price that receives a \"Product of the Year\" award from <em>Stereophile</em> and is praised as \"the new benchmark for mid-level audiophile speakers.\" Under the Community Story, this development represents:",
+    choices: {
+      A: "A marginal competitive threat — audiophile buyers are brand-loyal and unlikely to switch because of a single award; the Community Story's isolating mechanism (decades of cumulative reputation) would not be dislodged by one competitor achievement — this underestimates the significance of editorial authority; if the Community Story's mechanism is editorial certification, a competitor winning the industry's highest editorial honor is a direct attack on the mechanism, not a marginal concern.",
+      B: "A direct attack on the Community Story's core mechanism — the editorial press is the community's highest-authority certification source, and a competitor winning its most prestigious category award directly challenges B&amp;H's claim to community-certified excellence; this threat is more fundamental than a pricing or product-quality challenge because it attacks the certifying institution's endorsement that the mechanism depends on.",
+      C: "Primarily a pricing threat — the competitor's higher price positions it above B&amp;H, signaling an attack from the premium tier rather than a direct substitution threat; since B&amp;H competes at a lower price tier, buyer substitution is not immediately likely — this misreads the situation; in audiophile markets, price signals quality, and a higher-priced competitor receiving the top editorial award repositions the price-quality expectation for the category upward, putting pressure on B&amp;H's community standing regardless of whether direct buyer substitution occurs immediately.",
+      D: "A signal that B&amp;H should respond by launching a competing flagship product at a similar price point to remain in the relevant editorial competition — this identifies a potential strategic response but frames the competitive threat as a product-portfolio gap rather than what it actually is under the Community Story: an editorial certification loss that damages the mechanism of value creation."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Under the Community Story, the growth investment most tightly aligned with the value-creation mechanism is:",
+    choices: {
+      A: "Building a new Vermont manufacturing facility with expanded hand-assembly capacity — manufacturing investment supports the evidence that the Community Story points to but does not directly extend the community relationships or editorial authority that constitute the causal mechanism of value creation.",
+      B: "Acquiring a competing audiophile brand with a complementary product range — acquisitions can expand revenue, but audiophile communities are skeptical of consolidation; an acquisition risks being perceived as corporate opportunism that undermines the authenticity-based community standing the Community Story depends on.",
+      C: "Investing in sponsored appearances at major audiophile events (Rocky Mountain Audio Fest, Munich High-End Show), establishing direct relationships with community leaders and power-user reviewers, and creating editorial content that positions B&amp;H leadership as thought authorities within the audiophile press — this directly invests in the community relationships and editorial standing that constitute the causal mechanism under the Community Story.",
+      D: "Launching a loyalty rewards program for repeat purchasers and dealer referrals — loyalty programs are value-capture and retention tools; they retain existing customers but do not expand the community standing, editorial authority, or community trust that attract new customers under the Community Story."
+    },
+    correct: "C"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// BETA — D2C HYBRID (original 5)
+// ══════════════════════════════════════════════════════════════════════════
+beta_dtc: [
+  {
+    stem: "Of the ten activities in B&amp;H's activity system, the one most directly strained by launching D2C e-commerce alongside the existing dealer network is:",
+    choices: {
+      A: "Specialty dealer network — dealers carry B&amp;H precisely because B&amp;H has <em>not</em> sold direct; introducing a D2C channel converts dealers into a price-protected secondary tier and threatens the trust-based relationship the network depends on.",
+      B: "Hand-assembly in Vermont — D2C does not change production volume or method; the same units are produced regardless of channel.",
+      C: "18-month engineering cycles — engineering cycles operate independently of channel structure and are not affected by D2C in the short or medium term.",
+      D: "Editorial relationships with audiophile magazines — magazines review products on product merit; the channel through which a unit is sold does not affect its acoustic performance or review reception."
+    },
+    correct: "A"
+  },
+  {
+    stem: "To execute D2C successfully, Brennan &amp; Hale must develop digital marketing and customer-acquisition capabilities. The single greatest tension this creates with the existing activity system is:",
+    choices: {
+      A: "Digital marketing requires data-analytics infrastructure that Brennan &amp; Hale does not currently have — a true capability gap, but it can be built or contracted; the gap itself does not create strategic <em>tension</em> with the activity system.",
+      B: "Digital marketing requires mass-audience customer-acquisition campaigns, which are in direct tension with B&amp;H's <em>no television, no mass-market advertising</em> identity — a core component of the activity system that signals exclusivity and editorial focus.",
+      C: "Digital marketing budgets are typically larger than dealer-cooperative marketing budgets, so D2C will require capital reallocation — a budgeting consequence, not an activity-system tension.",
+      D: "Digital marketing introduces measurement metrics (CAC, LTV, conversion rate) that require new financial reporting — an operational change, not an activity-system tension."
+    },
+    correct: "B"
+  },
+  {
+    stem: "<strong>IF</strong> Brennan &amp; Hale's D2C launch succeeds and grows to 30% of total revenue within three years, <strong>THEN</strong> the most likely downstream change required to preserve activity-system coherence is:",
+    choices: {
+      A: "Brennan &amp; Hale will need to invest in additional in-store listening rooms at remaining dealer locations to differentiate the dealer experience — this preserves dealer activity but does not resolve the structural conflict between D2C and dealer channels.",
+      B: "Brennan &amp; Hale will need to expand its product line to include more affordable products that fit D2C distribution — this conflates two separate strategic decisions; D2C success does not automatically require new SKUs.",
+      C: "Brennan &amp; Hale will need to relocate manufacturing to a higher-volume facility outside Vermont — D2C does not, on its own, drive a manufacturing-volume problem.",
+      D: "Brennan &amp; Hale will need to formally restructure or reduce its dealer network — the hybrid D2C/dealer model is structurally unstable at scale, and one channel will eventually have to be deprioritized."
+    },
+    correct: "D"
+  },
+  {
+    stem: "Within the first 90 days of executing D2C, the single most important operational decision is:",
+    choices: {
+      A: "Selecting an e-commerce platform (Shopify, custom build, Salesforce Commerce) — platform selection matters but is technical and reversible; the wrong platform can be migrated later.",
+      B: "Hiring a Director of Digital Marketing — staffing matters but does not resolve the strategic question; the hiring decision is downstream of the policy decision.",
+      C: "Defining the dealer-protection policy — which products will and will not be sold D2C, how dealer leads will be handed off, and how price integrity will be maintained across channels; this policy sets the precedent for the dealer relationship and determines whether the hybrid model is sustainable.",
+      D: "Building the customer-data infrastructure to support analytics — data infrastructure matters for long-term D2C performance but is not a 90-day priority; data systems can be built progressively as the channel scales."
+    },
+    correct: "C"
+  },
+  {
+    stem: "Of the existing activity-system elements, the one that most <em>reinforces</em> the success of D2C — and is therefore an asset rather than a constraint — is:",
+    choices: {
+      A: "The 48-year continuous brand presence and editorial reputation — customers searching online for premium audio are drawn first to brands with established audiophile credibility, and B&amp;H's reputation is the asset that brings inbound traffic without paid acquisition.",
+      B: "Hand-assembly in Vermont — a value-creation asset, but it does not differentially reinforce D2C; the same hand-assembly applies whether the product is sold through a dealer or direct.",
+      C: "Specialty dealer network — the dealer network is a constraint on D2C, not a reinforcement; dealer economic interest is in opposition to direct sales.",
+      D: "Lifetime service and parts availability — a customer-trust asset that supports premium pricing across all channels, but it does not differentially reinforce D2C versus dealer channels."
+    },
+    correct: "A"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// BETA — DOUBLE DOWN ON DEALERS (new 5)
+// ══════════════════════════════════════════════════════════════════════════
+beta_dealers: [
+  {
+    stem: "Of the ten activities in Brennan &amp; Hale's activity system, the one most directly <em>reinforced</em> by the Double Down on Dealers strategy is:",
+    choices: {
+      A: "Vermont hand-assembly — this activity is unchanged by the channel strategy; production method and location are independent of whether distribution is dealer-only or hybrid.",
+      B: "No mass-market advertising — dealer exclusivity removes the pressure to build consumer brand recognition independently of dealers; B&amp;H can maintain its no-advertising commitment precisely because the dealer network is its primary brand communication channel, and deepening dealer exclusivity reinforces both activities simultaneously by making each more coherent and more mutually dependent.",
+      C: "18-month engineering cycles — engineering cycles are driven by product quality requirements, not by channel structure; choosing dealer exclusivity does not change the development timeline.",
+      D: "Privately held ownership — ownership structure enables the decision to reject D2C on strategic rather than quarterly-earnings grounds; it is an enabling condition for the Double Down decision but is not itself an activity that is strengthened by that decision."
+    },
+    correct: "B"
+  },
+  {
+    stem: "The Double Down on Dealers strategy creates strategic complementarity between the dealer network and in-store listening rooms because:",
+    choices: {
+      A: "Deepening dealer exclusivity through exclusive territories and dealer-only product premieres makes listening-room demonstration events more commercially valuable for both dealer and B&amp;H simultaneously — the dealer has no competing channel to dilute the listening-room economics, so the value of the demonstration experience increases when neither party can bypass it; this is mutual reinforcement, which is what strategic complementarity means.",
+      B: "Listening rooms generate word-of-mouth referrals that are more valuable than digital marketing — a true observation about listening rooms, but not a statement about complementarity; complementarity requires that the value of both activities increases when they are done together, not merely that one activity is effective in isolation.",
+      C: "Dealer-only product premieres ensure that listening rooms feature products customers cannot see anywhere else — this describes one directional influence (premieres → listening rooms) rather than the mutual reinforcement that defines complementarity; the activities would need to increase each other's value bidirectionally.",
+      D: "The no-advertising policy forces B&amp;H to rely on listening rooms for customer acquisition — this is a constraint analysis, not a complementarity analysis; complementarity is about mutual value amplification, not about necessity created by the absence of alternatives."
+    },
+    correct: "A"
+  },
+  {
+    stem: "Under the Double Down on Dealers strategy, the primary mechanism by which Brennan &amp; Hale captures value — preserving the 52% gross margin rather than allowing it to erode through dealer discounting — is:",
+    choices: {
+      A: "Exclusive territorial arrangements give B&amp;H contractual minimum-advertised-price (MAP) protection, preventing dealers from discounting below a floor — MAP enforcement is a real pricing tool, but it is enforced effectively only when dealers have a strong financial incentive to maintain price integrity; the mechanism that creates that incentive is what matters.",
+      B: "The aligned economic interests of exclusive-territory dealers — dealers who hold formal exclusive territories have a direct financial stake in preserving B&amp;H's premium price positioning because their own margins depend on it; they are not fighting B&amp;H for margin cuts but actively protecting the price premium, which aligns dealer and manufacturer interests around price maintenance in a way that non-exclusive relationships do not.",
+      C: "The no-mass-advertising policy keeps customer acquisition costs near zero, allowing B&amp;H to retain profits that would otherwise be spent on marketing — keeping costs low contributes to margin preservation, but value capture refers to how B&amp;H extracts value from customers (pricing power), not how it reduces its own overhead.",
+      D: "The lifetime service guarantee creates switching costs that lock customers in, enabling B&amp;H to raise prices over time — switching costs do contribute to value capture, but the lifetime service guarantee is a brand-support investment that costs money to deliver; it attracts initial buyers, not a mechanism for subsequent price extraction."
+    },
+    correct: "B"
+  },
+  {
+    stem: "The single most significant strategic tradeoff of the Double Down on Dealers strategy — the clearest cost of choosing it over D2C — is:",
+    choices: {
+      A: "B&amp;H permanently forgoes the ability to capture dealer margin (30–35%) on unit sales through direct sales — a real economic cost that can be quantified; however, the strategy explicitly accepts this tradeoff in exchange for channel harmony and the complementarity benefits of exclusive relationships, making it a known and deliberate choice rather than an unforeseen consequence.",
+      B: "Double Down on Dealers leaves B&amp;H dependent on the continued vitality of the specialty dealer channel, which is structurally declining as audiophile buyers increasingly expect digital research and direct purchase options — accepting deepened channel dependency in a channel facing secular decline is the deeper strategic risk; the policy choice reinforces a distribution model that may be less viable in ten years regardless of how well the relationships are managed.",
+      C: "Double Down on Dealers prevents B&amp;H from gathering direct customer data, which is increasingly important for product development and personalization — a real limitation, but it is a capability gap rather than a structural strategic risk; data can be partially gathered through dealer relationships, and its absence is a medium-term operational constraint, not the primary strategic exposure.",
+      D: "Double Down on Dealers requires B&amp;H to invest capital in dealer co-marketing, reducing free cash flow available for engineering — a capital allocation tradeoff, but it is a financial constraint that can be managed; the more fundamental risk is structural channel dependency, which cannot be reversed once the D2C window has been passed."
+    },
+    correct: "B"
+  },
+  {
+    stem: "If Double Down on Dealers is actually the wrong strategic choice for B&amp;H, the leading indicator most likely to appear first is:",
+    choices: {
+      A: "The gross margin on dealer-sold units begins declining — margin decline is a lagging indicator; it reflects pricing pressure that is already materializing in commercial negotiations rather than signaling the structural failure of the channel strategy at an early, actionable stage.",
+      B: "A new generation of audiophile buyers — those who entered the market between 2015 and 2030 — shows measurably lower rates of dealer-channel engagement and increasingly initiates and completes purchases through manufacturer websites and online-only audio retailers — this would signal that the core assumption behind Double Down (that dealers are the primary customer acquisition channel for the relevant buyer cohort) is failing, well before the revenue decline is large enough to appear in financial statements.",
+      C: "Brennan &amp; Hale's weakest 30 dealers begin requesting price concessions — dealer-side pressure on pricing is a commercial negotiating behavior that can reflect temporary market softness or individual dealer economics rather than a structural failure of the channel strategy; it is a commercial signal, not a clear leading indicator of strategy failure.",
+      D: "<em>Stereophile</em> and <em>The Absolute Sound</em> reduce review frequency for B&amp;H products — editorial coverage changes reflect editorial priorities and product-cycle review schedules; they are not directly linked to whether the dealer channel is the right distribution model or is failing to reach the next generation of buyers."
+    },
+    correct: "B"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// GAMMA — DECLINE APEX (original 5)
+// ══════════════════════════════════════════════════════════════════════════
+gamma_decline: [
+  {
+    stem: "The single most important brand-equity element placed at risk by the Apex Mobility co-branding deal is:",
+    choices: {
+      A: "Brennan &amp; Hale's product-quality reputation — co-branded automotive audio is technically distinct from home audio and would be evaluated on its own merits; quality reputation is a real concern but is not the <em>most</em> fragile element.",
+      B: "Brennan &amp; Hale's pricing power — the deal does not change Brennan &amp; Hale's home-audio pricing structure; pricing power is downstream of brand equity and would only be affected indirectly.",
+      C: "Brennan &amp; Hale's standing in the audiophile community and editorial press — a reputation built over 48 years gets re-coded the moment the company is publicly associated with mass-luxury automotive context, and this association cannot be unwound by contract terms.",
+      D: "Brennan &amp; Hale's dealer-network economics — dealers may have opinions about the deal, but the deal does not directly compete with dealer revenue or change dealer margins."
+    },
+    correct: "C"
+  },
+  {
+    stem: "The strongest strategic argument for declining the Apex deal — accepting the foregone $42M in annual revenue — is:",
+    choices: {
+      A: "$42M is a small fraction of Brennan &amp; Hale's $310M revenue base, so the foregone revenue is not material — a financial-materiality argument, but it understates what the company is leaving on the table and is not the central strategic logic.",
+      B: "The audiophile-community reputation Brennan &amp; Hale has built over 48 years is an asset that compounds over time and cannot be rebuilt if damaged; trading 48 years of compounded brand equity for a 13.5% top-line lift is asymmetric in a way that contract terms cannot mitigate.",
+      C: "Apex Mobility may go bankrupt or change ownership during the contract term, exposing B&amp;H to reputational risk from a partner over which it has no control — a counterparty-risk argument, addressed through contract terms (termination rights), not by declining outright.",
+      D: "The deal would require Brennan &amp; Hale to expand its engineering team to support automotive applications, distracting from core flagship work — an opportunity-cost argument; engineering capacity can be expanded, and the strategic reason is brand integrity, not engineering capacity."
+    },
+    correct: "B"
+  },
+  {
+    stem: "A board member supporting the deal argues: <em>\"Bose-Cadillac and Burmester-Mercedes partnerships have not damaged those brands. There is no reason to think the Apex deal would damage ours.\"</em> The single biggest flaw in this argument is:",
+    choices: {
+      A: "Bose was already mass-market-positioned (Wave Radio, QuietComfort headphones, Bose Stores in malls) before any automotive deal, and Burmester partners only with vehicles whose positioning matches its $150K+ home audio prestige (Mercedes-Maybach and S-Class) — neither precedent maps to Brennan &amp; Hale.",
+      B: "Bose and Burmester are larger companies than Brennan &amp; Hale and have more financial cushion to absorb brand damage — a financial-resilience point, not a contextual one; size does not determine whether a co-branding deal damages a brand.",
+      C: "Bose and Burmester have public stock listings and quarterly reporting pressure that forces them to take revenue opportunities Brennan &amp; Hale, as a private company, can decline — ownership structure is a real difference but is not the contextual flaw in the comparison.",
+      D: "Bose and Burmester have automotive engineering teams that Brennan &amp; Hale lacks — a capabilities point, not a brand-positioning one; the analogy fails because the brand-positioning math is different for B&amp;H."
+    },
+    correct: "A"
+  },
+  {
+    stem: "<strong>IF</strong> Brennan &amp; Hale declines the Apex deal and it turns out the company actually needed the growth, the single most important <em>leading</em> indicator of this failure to monitor is:",
+    choices: {
+      A: "Annual revenue growth rate — revenue is a <em>lagging</em> indicator; by the time revenue declines reveal that a growth alternative was needed, the strategic window for an Apex-style deal will have closed.",
+      B: "Number of new dealer signups — a distribution metric, not a growth-strategy one; B&amp;H could sign new dealers while losing share in the underlying segment.",
+      C: "<em>Stereophile</em> and <em>Absolute Sound</em> review tone — review tone indicates brand health, not growth-strategy success; positive reviews can coexist with declining commercial relevance.",
+      D: "The growth rate of the audiophile equipment segment relative to Brennan &amp; Hale's own growth rate — if the segment is growing while B&amp;H is flat or declining, the company is losing share, an early signal that brand protection alone is insufficient."
+    },
+    correct: "D"
+  },
+  {
+    stem: "Having declined the Apex deal, the most coherent alternative growth path <em>consistent with</em> Brennan &amp; Hale's brand-protection logic is:",
+    choices: {
+      A: "Co-brand with a luxury hospitality chain (e.g., Aman Resorts) for in-suite audio systems — closer contextual fit than Apex, but the same brand-protection objection applies (mass-property exposure, contextual association with non-audio luxury).",
+      B: "Acquire or partner with a complementary high-end audio specialist (turntable maker, electronics specialist) whose positioning matches B&amp;H's — this expands B&amp;H's audiophile presence within the same value-creation framework, and the brand association is reinforcing rather than diluting.",
+      C: "License the Brennan &amp; Hale name to a smartphone manufacturer for premium audio integration — this carries the same brand-protection objection as Apex (mass-market context, no control over end-product use) and is in fact more dilutive.",
+      D: "Open Brennan &amp; Hale-branded retail stores in major cities — this competes directly with the dealer network, a strategic conflict separate from the Apex question."
+    },
+    correct: "B"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// GAMMA — ACCEPT APEX (new 5)
+// ══════════════════════════════════════════════════════════════════════════
+gamma_accept: [
+  {
+    stem: "Under brand extension theory, the Apex Mobility deal is most likely to succeed as a brand extension if which condition is present?",
+    choices: {
+      A: "The Apex vehicle is positioned in a price tier significantly above B&amp;H's home-audio average — price tier alignment is one signal, but the primary condition for successful brand extension is perceived fit between the extension context and the core brand's meaning; price alone does not guarantee fit if the experiential or categorical associations diverge.",
+      B: "The target customer for the Apex top-tier vehicle is meaningfully the same demographic as B&amp;H's core audiophile customer, and the vehicle's brand positioning — craftsmanship, engineering precision, long-cycle ownership — is semantically consistent with B&amp;H's meaning in its home market; when the extension's context shares the core brand's meaning with the same audience, extension value flows in both directions.",
+      C: "The deal generates revenues large enough ($42M annually) to fund additional R&amp;D and product development at B&amp;H — revenue generation is a financial justification for the deal, not a brand extension success condition; brand extension succeeds or fails on the basis of brand-meaning transfer, not on the financial terms of the arrangement.",
+      D: "Apex Mobility has its own strong brand reputation, reducing the likelihood that any negative associations from Apex will flow to B&amp;H — this reverses the risk; the primary concern is not that Apex's brand will contaminate B&amp;H but that B&amp;H's high-commitment audiophile brand will be diluted through mass-automotive association that its core customers view as categorically different."
+    },
+    correct: "B"
+  },
+  {
+    stem: "The team's decision that B&amp;H must control the full signal chain end-to-end in the Apex vehicles is best understood as protecting:",
+    choices: {
+      A: "B&amp;H's legal liability — if the audio system underperforms or causes an accident, end-to-end control ensures B&amp;H can demonstrate it was not responsible for downstream signal modifications — this frames signal-chain control primarily as a legal protection mechanism; while that is a benefit, the strategic purpose is brand-quality assurance, not liability limitation.",
+      B: "The credibility of the B&amp;H brand claim in the automotive context — audiophile buyers know that a co-branded automotive audio system is only as good as its weakest link; if Apex routes B&amp;H-branded audio through an inferior amplifier or DSP stage that B&amp;H did not specify, the in-car listening experience will not reflect B&amp;H quality standards, and the brand claim becomes factually unsupportable from the audiophile community's perspective.",
+      C: "Apex's quality reputation — Apex needs B&amp;H to control the signal chain to ensure the audio system justifies the premium vehicle positioning — this frames signal-chain control as primarily beneficial to Apex; the strategic logic from B&amp;H's perspective is brand protection, not partner quality assurance.",
+      D: "The engineering capabilities of both teams — signal chain control and joint review ensure both engineering teams understand the system design, reducing misunderstandings during manufacturing — this is an operational benefit; the primary brand-protection function of signal chain control is ensuring the in-car experience reflects B&amp;H standards, not coordinating engineering processes."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Of the four guardrails negotiated (top vehicle only, full signal-chain control, no badge dilution downstream, exit rights), the one whose <em>absence</em> would be most immediately dangerous to B&amp;H's brand is:",
+    choices: {
+      A: "Exit rights — without exit rights, B&amp;H could be trapped if Apex undergoes a quality crisis or changes ownership; however, the brand damage from audiophile community perception typically occurs before exit rights can be exercised, so exit rights protect the future but do not prevent the initial brand damage.",
+      B: "Top-vehicle-only restriction — if B&amp;H branding appears on Apex's mid-tier or entry-level vehicles, the brand association immediately loses the premium-context signal that makes the deal defensible; this is an immediate, observable violation that the audiophile press would notice and report on.",
+      C: "No badge dilution downstream — this prohibition prevents Apex from using the B&amp;H badge on lower vehicles in the future, which is a critical contractual protection against brand erosion over the contract term; however, it is a prospective protection against future violations, not the most immediately activated guardrail.",
+      D: "Full signal-chain control — without controlling the full signal chain, the in-car B&amp;H audio experience cannot be guaranteed to reflect B&amp;H quality standards; audiophile reviewers who test the car's audio will publish their findings, and if the sound quality is inadequate, the brand damage is immediate, factual, and publicly documented in the same editorial press that defines B&amp;H's community standing."
+    },
+    correct: "D"
+  },
+  {
+    stem: "Even with all four guardrails in place, the residual brand risk that contracts cannot fully eliminate is:",
+    choices: {
+      A: "Apex's engineers failing to follow B&amp;H's technical specifications during manufacturing — the joint engineering review guardrail directly addresses this; manufacturing compliance is an operational risk that contractual oversight and joint review can substantially mitigate, particularly in a relationship where B&amp;H retains exit rights.",
+      B: "The audiophile community's perception — regardless of contract terms, some audiophile buyers and critics will associate the B&amp;H brand with mass-automotive context the moment the deal is announced; this perception shift is not reversible by pointing to contract terms, because brand perceptions are formed by communities, not by legal documents, and cannot be controlled through guardrails alone.",
+      C: "Apex modifying the audio system after the contract term ends — beyond the term, Apex would no longer be authorized to use the B&amp;H brand; post-term modification is an unauthorized-use issue managed by trademark enforcement, not a residual risk within the active deal.",
+      D: "Revenue underperformance — if the Apex co-branded audio does not generate the projected $42M in annual revenue, B&amp;H will have accepted brand risk without the anticipated financial reward — revenue underperformance is a commercial risk, not a brand risk; the community perception concern can materialize regardless of whether financial projections are met."
+    },
+    correct: "B"
+  },
+  {
+    stem: "To monitor whether the Apex deal is strengthening or damaging B&amp;H's brand, the most informative leading indicator is:",
+    choices: {
+      A: "Annual revenue from the Apex licensing arrangement — revenue is a financial indicator of commercial performance; it does not measure brand health in the audiophile community, which is the specific risk the guardrails are designed to protect against.",
+      B: "B&amp;H's position in the annual Recommended Components list published by <em>Stereophile</em> — this publication maintains its recommendations through an editorial process that directly reflects audiophile community trust; if B&amp;H holds or improves its positions, the editorial community is signaling maintained or enhanced brand standing; if B&amp;H is downgraded or removed from a category, the community is signaling brand deterioration, and this signal would appear in advance of revenue decline.",
+      C: "Apex vehicle sales volumes in the top tier — vehicle sales tell us whether the co-branded audio is reaching consumers, not whether the B&amp;H brand is being perceived positively by the audiophile community that B&amp;H depends on for its primary market.",
+      D: "Social media mentions of B&amp;H in automotive contexts versus audiophile contexts — while mention-context is informative, it is a low-precision signal (a mention can be positive or negative, from a novice or an authority); the <em>Stereophile</em> Recommended Components list is a higher-authority signal from the community whose judgment most matters to B&amp;H's long-term brand position."
+    },
+    correct: "B"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// DELTA — AUDIOPHILE SEGMENT $1,500+ (original 5)
+// ══════════════════════════════════════════════════════════════════════════
+delta_audiophile: [
+  {
+    stem: "Within the premium audiophile equipment industry ($1,500+, specialty channels), the threat of new entrants is best assessed as:",
+    choices: {
+      A: "LOW — capital requirements for engineering and dealer-network access are high, audiophile-press credibility takes years to build, and tacit acoustic-engineering knowledge cannot be hired into existence; together these create meaningful entry barriers.",
+      B: "HIGH — the audio components market has many small new brands launching annually, particularly through D2C channels — this conflates the broader audio market with the audiophile equipment industry specifically; new D2C audio brands typically do not enter the $1,500+ specialty-dealer segment.",
+      C: "MEDIUM — new entrants are growing in adjacent segments and could move upmarket — a forward-looking statement about adjacent threats, better captured under Substitutes than under New Entrants.",
+      D: "HIGH — Chinese-backed entrants (FiiO, HiFiMan) are entering with lower-cost manufacturing — these compete primarily in headphones at sub-$1,500 price points, not in the $1,500+ specialty audiophile segment."
+    },
+    correct: "A"
+  },
+  {
+    stem: "In the premium audiophile equipment industry, the bargaining power of buyers is best assessed as:",
+    choices: {
+      A: "HIGH — wealthy audiophile buyers have many alternatives at the $1,500+ price point and can switch between brands — switching alternatives exist, but audiophile buyers face real switching costs (system matching, room tuning, dealer relationships) and have no aggregation, which overstates buyer leverage.",
+      B: "MEDIUM — buyers can comparison-shop online through specialty audio forums and review aggregators — comparison-shopping reinforces purchase decisions in the audiophile segment rather than driving price negotiation.",
+      C: "HIGH — specialty audio dealers serve as intermediary buyers with concentrated purchasing power — dealers are part of B&amp;H's distribution system, not arms-length buyers; they are channel partners with aligned incentives.",
+      D: "LOW — audiophile buyers are individual consumers with no aggregation, switching costs are real (system matching, room tuning, dealer relationships), and buyers self-select into a price-tolerant segment where willingness-to-pay is decoupled from comparison shopping."
+    },
+    correct: "D"
+  },
+  {
+    stem: "The threat of substitutes for premium audiophile equipment is best assessed as:",
+    choices: {
+      A: "LOW — there are no substitutes for high-fidelity audio; consumers seeking audiophile-grade sound have no realistic alternatives — overstates audiophile exclusivity; high-end wireless systems and premium headphones do meaningfully substitute for some audiophile use-cases.",
+      B: "MEDIUM — high-quality wireless and lifestyle audio (Sonos, KEF Wireless, premium headphones) is an imperfect but real substitute that pulls some demand from traditional audiophile equipment, particularly among younger consumers who weigh convenience alongside fidelity.",
+      C: "HIGH — most audiophile consumers are price-sensitive and will substitute toward $500 wireless systems if they perceive value parity — misreads the audiophile segment, which by definition is not price-sensitive at the $1,500+ tier.",
+      D: "LOW — substitution requires functional equivalence, and no wireless system can match the acoustic performance of dedicated audiophile equipment — functional equivalence is not the test for substitutes; substitutes need only solve the same consumer problem acceptably."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Of the five forces in the premium audiophile equipment industry, the force that <em>most heavily shapes profitability</em> is:",
+    choices: {
+      A: "Bargaining power of suppliers — specialty driver and component suppliers (Scan-Speak, Mundorf) have some leverage, but multiple supplier options exist and switching is feasible; suppliers are not the dominant constraint on industry profitability.",
+      B: "Threat of new entrants — limited by capital, reputation, and tacit knowledge; not the force most actively shaping profitability today, even if it remains a long-term watch item.",
+      C: "Threat of substitutes — the slow erosion of demand toward lifestyle and wireless audio is the structural force that most actively shapes long-term profitability, because it pressures the size of the addressable market without yet pressuring per-unit margins.",
+      D: "Bargaining power of buyers — audiophile buyers have low individual bargaining power, and this force is the <em>least</em> binding constraint on industry profitability, not the most."
+    },
+    correct: "C"
+  },
+  {
+    stem: "A clear-eyed synthesis of the Five Forces analysis for the premium audiophile equipment industry concludes:",
+    choices: {
+      A: "The industry is highly attractive — low new-entrant threat, low buyer power, and high switching costs combine to create a structurally protected segment for incumbents — overstates the protection by understating substitute pressure.",
+      B: "The industry is structurally unattractive — substitute pressure and slow market growth mean profitability will decline regardless of strategic positioning — overcorrects; per-unit margins remain protected within the industry.",
+      C: "The industry is structurally sound but slowly shrinking — per-unit profitability is preserved by low rivalry and strong buyer lock-in, but substitute pressure means total addressable market is at risk over the next decade; B&amp;H has a defensible position <em>if</em> it stays focused.",
+      D: "The industry's attractiveness depends entirely on Brennan &amp; Hale's ability to defend its brand, since brand is the only meaningful differentiator at the $1,500+ price point — conflates company-level analysis with industry-level analysis; industry attractiveness does not depend on a single company's positioning."
+    },
+    correct: "C"
+  }
+],
+
+// ══════════════════════════════════════════════════════════════════════════
+// DELTA — CONNECTED HOME AUDIO $500+ (new 5)
+// ══════════════════════════════════════════════════════════════════════════
+delta_connected: [
+  {
+    stem: "Under the $500+ Premium Connected Home Audio industry definition, the threat of new entrants compared to the $1,500+ audiophile segment is:",
+    choices: {
+      A: "Unchanged — both industry definitions face the same entry barriers because premium audio brands require years of reputation-building regardless of price tier — this ignores that the $500+ tier has substantially lower minimum engineering requirements, more accessible wireless component sourcing, and D2C distribution that bypasses dealer-network barriers entirely; the barriers that protect the $1,500+ audiophile segment do not transfer unchanged to the broader $500+ market.",
+      B: "Higher — the $500+ tier has lower minimum viable engineering requirements, more accessible off-the-shelf wireless components, active venture capital interest in consumer audio hardware, and D2C distribution that bypasses specialty-dealer network barriers; collectively, these factors make entry substantially easier and more frequent than in the $1,500+ audiophile segment.",
+      C: "Lower — the $500+ tier includes Sonos, which has scale advantages and a loyal installed base that creates ecosystem switching costs, effectively discouraging new entrants — Sonos's scale deters consumer switching from its ecosystem but does not deter new manufacturers from entering the broader $500+ market; the number of new entrants in the premium wireless category is precisely the evidence that Sonos's presence does not constitute an entry barrier.",
+      D: "Higher only for hardware entrants — software-based streaming platforms can enter the connected home audio space without manufacturing hardware — streaming platforms are substitutes (or complements) for connected home audio hardware, not entrants into the hardware industry; conflating streaming services with hardware manufacturers misapplies the New Entrants force."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Under the $500+ Premium Connected Home Audio industry definition, buyer bargaining power compared to the $1,500+ audiophile segment is:",
+    choices: {
+      A: "Lower — the $500+ market is defined by mass-consumer purchasing behavior, where individual buyers are highly fragmented with no meaningful ability to negotiate prices with manufacturers — buyer fragmentation does reduce individual negotiating leverage, but this confuses individual buyer power with the collective price sensitivity and substitutability of a large buyer pool; in the $500+ tier, buyers have many close substitutes (Sonos, KEF Wireless, premium soundbars) and lower switching costs than audiophile buyers, which collectively increases buyer power even without individual concentration.",
+      B: "Higher — buyers in the $500+ tier have more readily available product alternatives, lower switching costs (no room-tuning investment, no matched-system dependency, no specialized dealer relationship), and greater price sensitivity than the $1,500+ audiophile segment; collectively these factors give buyers more leverage over manufacturers' pricing power in the broader market.",
+      C: "Higher primarily because retailers like Best Buy and Amazon carry $500+ products and can demand lower prices and better terms from manufacturers — retailer power is a distinct and real force, but the question of consumer buyer power in Five Forces focuses on end-consumer choice behavior; in the $500+ market, direct-to-consumer and platform sales are increasingly dominant, making end-consumer substitutability the more analytically primary driver.",
+      D: "Unchanged — price sensitivity is similar across the $500+ and $1,500+ tiers because buyers in both segments self-select as premium audio enthusiasts — this conflates willingness to pay with switching ease; audiophile buyers in the $1,500+ tier face real system-dependency switching costs, while $500+ premium buyers face far more choice and much lower switching costs regardless of their enthusiasm level."
+    },
+    correct: "B"
+  },
+  {
+    stem: "Under the $500+ Premium Connected Home Audio industry definition, the threat of substitutes changes in what specific way compared to the $1,500+ audiophile segment?",
+    choices: {
+      A: "Substitute pressure decreases — by broadening the industry to include Sonos and other wireless systems, the formerly adjacent substitute category is now inside the industry, so the threat from those specific products disappears — this correctly identifies that former substitutes become rivals, but ignores that new substitute pressure emerges from below: mass-market smart speakers and Bluetooth audio solve the same core problem (home music playback) at prices that are increasingly competitive with the low end of the $500+ tier.",
+      B: "The nature of substitution shifts — from wireless lifestyle audio threatening traditional audiophile equipment (the $1,500+ dynamic) to mass-market smart speakers and streaming-only solutions threatening the lowest tier of the $500+ category; the substitute boundary changes location, not just intensity, because broadening the industry brings former substitutes inside as rivals while exposing the category's lower tier to new substitutes from below.",
+      C: "Substitute pressure is unchanged because both definitions face the same fundamental substitute threat from streaming services — streaming services are a demand-side alternative for music consumption broadly but are not substitutes for speakers or playback hardware; they are platform enablers of the hardware market, not competing products that solve the same consumer hardware problem.",
+      D: "Substitute pressure is substantially higher under the $500+ definition because the $500+ tier includes products that are themselves close substitutes for each other — this describes intra-industry rivalry (competition among participants within the industry boundary), not substitute pressure from outside the industry; the Five Forces framework requires distinguishing between rivalry and substitutes."
+    },
+    correct: "B"
+  },
+  {
+    stem: "When Brennan &amp; Hale conducts Five Forces analysis under the $500+ definition, the rivalry assessment changes most significantly because:",
+    choices: {
+      A: "Rivalry increases because Sonos is now classified as a direct competitor rather than a substitute — this is true but understates the scope of the change; the industry boundary shift brings in not just Sonos but also KEF Wireless, Bang &amp; Olufsen, premium soundbars, Audeze, and numerous well-funded D2C audio brands, dramatically expanding the competitive field beyond a single additional player.",
+      B: "Sonos's installed base and ecosystem lock-in effectively eliminates meaningful competition in the $500+ segment, reducing rivalry — Sonos is dominant in wireless multi-room but does not eliminate competition; KEF, Bang &amp; Olufsen, Bowers &amp; Wilkins, and numerous D2C brands actively compete at $500+; Sonos's dominance intensifies rivalry by creating a powerful benchmark that all entrants must differentiate from, rather than reducing the competitive field.",
+      C: "Rivalry under the $500+ definition is substantially higher than in the $1,500+ audiophile segment because the number of competitors is larger, product differentiation is harder to maintain (wireless components are increasingly commoditized), and switching costs for buyers are lower — these three factors together (more competitors, compressed differentiation, lower switching costs) drive rivalry intensity upward under the Porter framework, making the $500+ market structurally more rivalrous than the $1,500+ audiophile niche.",
+      D: "Rivalry is unchanged because B&amp;H's Vermont-built products are sufficiently differentiated from Sonos and KEF Wireless that these brands do not compete for the same customers — differentiation can reduce a single company's exposure to rivalry but does not change the Five Forces assessment of industry-level rivalry intensity; industry rivalry is a structural feature of the competitive landscape, not a function of one company's positioning."
+    },
+    correct: "C"
+  },
+  {
+    stem: "The most important implication of choosing the $500+ Premium Connected Home Audio industry definition for Brennan &amp; Hale's strategic analysis is:",
+    choices: {
+      A: "The $500+ industry is structurally less attractive than the $1,500+ audiophile segment, which means B&amp;H should exit the wireless multi-room space — industry attractiveness analysis informs positioning decisions, not binary exit decisions; B&amp;H already competes in wireless and the appropriate response to an unattractive industry boundary is strategic repositioning or differentiation, not necessarily exit.",
+      B: "The $500+ definition reveals that B&amp;H currently occupies a premium niche within a broader, more competitive, and structurally less attractive industry — meaning B&amp;H's apparent structural protection depends critically on maintaining the industry boundary that shields it from broader competitive forces; if that boundary erodes as consumer behavior shifts toward $500–$1,500 connected audio, B&amp;H's structural protection erodes with it.",
+      C: "The $500+ definition proves that the $1,500+ audiophile segment is not a real industry, since it is actually a niche within the larger connected audio market — industry definition is an analytical choice, not a question of whether an industry is 'real'; the $1,500+ audiophile segment is a coherent competitive arena with identifiable competitors, defined buyer behavior, and distinct structural forces; calling it 'not real' confuses analytical granularity with analytical validity.",
+      D: "The $500+ definition is strategically less useful than the $1,500+ definition because it includes too many competitors for a useful Five Forces analysis — Five Forces can be applied to any industry definition, and a larger number of competitors changes the conclusions but not the analytical validity of the framework; broader industry definitions with many competitors are routinely analyzed using Five Forces."
+    },
+    correct: "B"
+  }
+]
+
+}; // end QUESTIONS
 
 // ─── STATE ────────────────────────────────────────────────────────────────
 const state = {
     studentId: "",
     sessionId: "",
-    answers: {},        // { q1: 'B', q2: 'A', ... }
+    startedAt: null,
     submitted: false,
-    startedAt: null
+    alphaChoice: null,
+    betaChoice:  null,
+    gammaChoice: null,
+    deltaChoice: null,
+    answers: { alpha: {}, beta: {}, gamma: {}, delta: {} }
 };
 
 // ─── DOM HELPERS ──────────────────────────────────────────────────────────
 function $(id) { return document.getElementById(id); }
+
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     $(id).classList.add('active');
@@ -905,10 +1256,14 @@ function generateSessionId() {
 }
 
 // ─── AUTH ─────────────────────────────────────────────────────────────────
-$('auth-btn').addEventListener('click', () => {
-    const sid = $('student-id').value.trim();
+$('auth-btn').addEventListener('click', doAuth);
+$('access-code').addEventListener('keypress', e => { if (e.key === 'Enter') doAuth(); });
+$('student-id').addEventListener('keypress', e => { if (e.key === 'Enter') doAuth(); });
+
+function doAuth() {
+    const sid  = $('student-id').value.trim();
     const code = $('access-code').value.trim().toUpperCase();
-    const err = $('auth-error');
+    const err  = $('auth-error');
 
     if (!/^\d{8}$/.test(sid)) {
         err.textContent = 'Please enter a valid 8-digit Student ID.';
@@ -916,29 +1271,26 @@ $('auth-btn').addEventListener('click', () => {
         return;
     }
     if (code !== ACCESS_CODE) {
-        err.textContent = 'Access code is incorrect. Please check your email from your instructor.';
+        err.textContent = 'Access code is incorrect. Check your email from your instructor.';
         err.style.display = 'block';
         return;
     }
     err.style.display = 'none';
-
     state.studentId = sid;
     state.sessionId = generateSessionId();
-    state.startedAt = new Date().toISOString();
-
     showScreen('intro-screen');
-});
+}
 
-$('to-case-btn').addEventListener('click', () => showScreen('case-screen'));
-$('to-questions-btn').addEventListener('click', () => {
-    renderExam();
-    showScreen('exam-screen');
+// ─── BEGIN EXAM (starts timer) ────────────────────────────────────────────
+function beginExam() {
+    state.startedAt = new Date().toISOString();
     startTimer();
-});
+    showSituation('alpha');
+}
 
 // ─── TIMER ────────────────────────────────────────────────────────────────
 let timerInterval = null;
-let timerEndsAt = null;
+let timerEndsAt   = null;
 
 function startTimer() {
     if (timerInterval) return;
@@ -950,23 +1302,18 @@ function startTimer() {
 }
 
 function tickTimer() {
-    if (state.submitted) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        return;
-    }
-    const remainingMs = timerEndsAt - Date.now();
-    const remainingSec = Math.max(0, Math.floor(remainingMs / 1000));
-    const mm = Math.floor(remainingSec / 60);
-    const ss = remainingSec % 60;
+    if (state.submitted) { clearInterval(timerInterval); timerInterval = null; return; }
+    const remaining = Math.max(0, Math.floor((timerEndsAt - Date.now()) / 1000));
+    const mm = Math.floor(remaining / 60);
+    const ss = remaining % 60;
     $('timer-value').textContent = `${mm}:${String(ss).padStart(2, '0')}`;
 
     const tEl = $('timer-display');
     tEl.classList.remove('warning', 'danger');
-    if (remainingSec <= 60) tEl.classList.add('danger');
-    else if (remainingSec <= WARNING_AT_SECONDS) tEl.classList.add('warning');
+    if (remaining <= 60) tEl.classList.add('danger');
+    else if (remaining <= WARNING_AT_SECONDS) tEl.classList.add('warning');
 
-    if (remainingSec <= 0) {
+    if (remaining <= 0) {
         clearInterval(timerInterval);
         timerInterval = null;
         autoSubmitOnTimeUp();
@@ -975,253 +1322,226 @@ function tickTimer() {
 
 function autoSubmitOnTimeUp() {
     if (state.submitted) return;
-    $('timeup-banner').style.display = 'block';
-    // Force-lock every section so any answers (submitted or in-progress) are counted
-    SITUATIONS.forEach(s => lockedSections.add(s.id));
-    document.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
-    document.querySelectorAll('.question-block').forEach(qb => qb.classList.add('section-locked'));
-    document.querySelectorAll('[id^="section-btn-"]').forEach(b => { b.disabled = true; b.textContent = 'Time Expired'; });
-    // Force-submit with whatever answers exist (unanswered = blank, scored as wrong)
+    // Show banner on current active screen
+    ['alpha','beta','gamma','delta'].forEach(sit => {
+        const b = $(`timeup-banner-${sit}`);
+        if (b) b.style.display = 'block';
+    });
+    document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
     submitExam(true);
 }
 
-// ─── RENDER EXAM ──────────────────────────────────────────────────────────
-function renderExam() {
-    const container = $('situations-container');
+// ─── SITUATION NAVIGATION ─────────────────────────────────────────────────
+function showSituation(sit) {
+    showScreen(`${sit}-choice-screen`);
+}
+
+// ─── CHOICE HANDLERS ──────────────────────────────────────────────────────
+function chooseAlpha(choice) {
+    state.alphaChoice = choice;
+    const label = choice === 'craft' ? 'The Craft Story — Value Creation Questions' : 'The Community Story — Value Creation Questions';
+    $('alpha-qs-label').textContent = label;
+    if (choice === 'community') { $('audio-wrap-community').style.display = 'flex'; }
+    renderQuestions('alpha', 'alpha_' + choice, 'alpha-questions-container', 'alpha-answered', 'alpha-confirm-btn');
+    showScreen('alpha-questions-screen');
+}
+
+function chooseBeta(choice) {
+    state.betaChoice = choice;
+    const label = choice === 'dtc' ? 'D2C Hybrid — Activity System Questions' : 'Double Down on Dealers — Activity System Questions';
+    $('beta-qs-label').textContent = label;
+    if (choice === 'dealers') { $('audio-wrap-dealers').style.display = 'flex'; }
+    renderQuestions('beta', 'beta_' + choice, 'beta-questions-container', 'beta-answered', 'beta-confirm-btn');
+    showScreen('beta-questions-screen');
+}
+
+function chooseGamma(choice) {
+    state.gammaChoice = choice;
+    const label = choice === 'decline' ? 'Decline Apex — Brand Protection Questions' : 'Accept Apex — Brand Extension Questions';
+    $('gamma-qs-label').textContent = label;
+    if (choice === 'accept') { $('audio-wrap-accept').style.display = 'flex'; }
+    renderQuestions('gamma', 'gamma_' + choice, 'gamma-questions-container', 'gamma-answered', 'gamma-confirm-btn');
+    showScreen('gamma-questions-screen');
+}
+
+function chooseDelta(choice) {
+    state.deltaChoice = choice;
+    const label = choice === 'audiophile' ? '$1,500+ Audiophile — Five Forces Questions' : '$500+ Connected Home — Five Forces Questions';
+    $('delta-qs-label').textContent = label;
+    if (choice === 'connected') { $('audio-wrap-connected').style.display = 'flex'; }
+    renderQuestions('delta', 'delta_' + choice, 'delta-questions-container', 'delta-answered', 'delta-confirm-btn');
+    showScreen('delta-questions-screen');
+}
+
+// ─── QUESTION RENDERER ────────────────────────────────────────────────────
+function renderQuestions(section, questionKey, containerId, counterId, btnId) {
+    const qs = QUESTIONS[questionKey];
+    const container = $(containerId);
     container.innerHTML = '';
+    state.answers[section] = {};
 
-    SITUATIONS.forEach((sit, sIdx) => {
-        const section = document.createElement('div');
-        section.className = 'card';
-        section.id = `section-${sit.id}`;
+    qs.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.className = 'question-block';
+        div.id = `q-${section}-${i}`;
 
-        section.innerHTML = `
-            <span class="situation-badge">${sit.badge}</span>
-            <h2 class="situation-title">${sit.title}</h2>
-            <div class="prose" style="margin-bottom: 1.5rem;">${sit.intro}</div>
-            <div class="questions-header">
-                <div>
-                    <div class="qh-label">Section ${sIdx + 1} of 4</div>
-                    <div class="qh-value">${sit.questions.length} multiple-choice questions</div>
-                </div>
-                <div style="text-align: right;">
-                    <div class="qh-label">Points</div>
-                    <div class="qh-value">${sit.questions.length * 5} pts</div>
-                </div>
+        const choicesHtml = ['A','B','C','D'].map(letter => `
+            <button class="choice-btn" id="cb-${section}-${i}-${letter}"
+                onclick="selectAnswer('${section}','${questionKey}',${i},'${letter}','${counterId}','${btnId}')">
+                <span class="choice-letter">${letter}.</span>
+                <span>${q.choices[letter]}</span>
+            </button>
+        `).join('');
+
+        div.innerHTML = `
+            <div class="q-meta">
+                <span class="q-num">Question ${i + 1} of 5</span>
+                <span class="q-locked" id="ql-${section}-${i}">Confirmed</span>
             </div>
-            <div id="questions-${sit.id}"></div>
-            <div class="section-submit-area" id="section-submit-${sit.id}">
-                <span class="ssa-status" id="ssa-status-${sit.id}">0 of ${sit.questions.length} answered — you can change answers freely until you submit this section.</span>
-                <button class="btn" id="section-btn-${sit.id}" data-section="${sit.id}" disabled>Submit Section Answers</button>
-            </div>
+            <div class="q-stem">${q.stem}</div>
+            <div class="choices">${choicesHtml}</div>
         `;
-        container.appendChild(section);
+        container.appendChild(div);
+    });
+}
 
-        const qContainer = section.querySelector(`#questions-${sit.id}`);
-        sit.questions.forEach((q, qIdx) => {
-            const qBlock = document.createElement('div');
-            qBlock.className = 'question-block';
-            qBlock.dataset.qid = q.id;
+function selectAnswer(section, questionKey, qIndex, letter, counterId, btnId) {
+    if (state.submitted) return;
+    // Deselect previous
+    ['A','B','C','D'].forEach(l => {
+        const b = $(`cb-${section}-${qIndex}-${l}`);
+        if (b) b.classList.remove('selected');
+    });
+    // Select new
+    const btn = $(`cb-${section}-${qIndex}-${letter}`);
+    if (btn) btn.classList.add('selected');
 
-            const choicesHtml = ['A','B','C','D'].map(letter => `
-                <button class="choice-btn" data-q="${q.id}" data-choice="${letter}">
-                    <span class="choice-letter">${letter}.</span>
-                    <span>${q.choices[letter]}</span>
-                </button>
-            `).join('');
+    state.answers[section][qIndex] = letter;
+    const count = Object.keys(state.answers[section]).length;
+    $(counterId).textContent = count;
+    $(btnId).disabled = (count < 5);
+}
 
-            qBlock.innerHTML = `
-                <div class="q-meta">
-                    <span class="q-num">Question ${getGlobalQNum(sIdx, qIdx)} of 20</span>
-                    <span class="q-locked">Section Submitted</span>
-                </div>
-                <div class="q-stem">${q.stem}</div>
-                <div class="choices">${choicesHtml}</div>
-            `;
-            qContainer.appendChild(qBlock);
+// ─── CONFIRM SECTION ──────────────────────────────────────────────────────
+function confirmSection(section, nextAction) {
+    if (state.submitted) return;
+    if (Object.keys(state.answers[section]).length < 5) return;
+
+    // Lock all questions in this section
+    const qs = QUESTIONS[state[section + 'Choice'] ? state[section + 'Choice'] : state[`${section}Choice`]];
+    for (let i = 0; i < 5; i++) {
+        ['A','B','C','D'].forEach(l => {
+            const b = $(`cb-${section}-${i}-${l}`);
+            if (b) { b.classList.add('locked'); b.onclick = null; }
         });
-    });
-
-    // Wire up choice buttons
-    document.querySelectorAll('.choice-btn').forEach(btn => {
-        btn.addEventListener('click', handleChoice);
-    });
-    // Wire up section-submit buttons
-    document.querySelectorAll('[id^="section-btn-"]').forEach(btn => {
-        btn.addEventListener('click', () => submitSection(btn.dataset.section));
-    });
-}
-
-const lockedSections = new Set();
-
-function submitSection(sectionId) {
-    if (lockedSections.has(sectionId)) return;
-    if (state.submitted) return;
-    const sit = SITUATIONS.find(s => s.id === sectionId);
-    const allAnswered = sit.questions.every(q => state.answers[q.id]);
-    if (!allAnswered) return;
-
-    lockedSections.add(sectionId);
-
-    // Visually lock all questions in this section
-    const sectionEl = $(`section-${sectionId}`);
-    sectionEl.querySelectorAll('.question-block').forEach(qb => qb.classList.add('section-locked'));
-    sectionEl.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
-
-    const ssa = $(`section-submit-${sectionId}`);
-    ssa.classList.add('locked');
-    $(`ssa-status-${sectionId}`).textContent = 'Section submitted. Answers locked.';
-    const btn = $(`section-btn-${sectionId}`);
-    btn.textContent = 'Submitted ✓';
-    btn.disabled = true;
-
-    updateProgress();
-    maybeShowSubmit();
-
-    // Scroll to next unlocked section if any
-    const idx = SITUATIONS.findIndex(s => s.id === sectionId);
-    const nextSit = SITUATIONS[idx + 1];
-    if (nextSit) {
-        const nextEl = $(`section-${nextSit.id}`);
-        if (nextEl) {
-            setTimeout(() => nextEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
-        }
+        const qBlock = $(`q-${section}-${i}`);
+        if (qBlock) qBlock.classList.add('answered');
+        const lockLabel = $(`ql-${section}-${i}`);
+        if (lockLabel) lockLabel.style.display = 'block';
     }
-}
 
-function getGlobalQNum(sIdx, qIdx) {
-    return sIdx * 5 + qIdx + 1;
-}
-
-function handleChoice(e) {
-    const btn = e.currentTarget;
-    const qid = btn.dataset.q;
-    const choice = btn.dataset.choice;
-
-    if (state.submitted) return;
-
-    // Find which section this question belongs to
-    const sit = SITUATIONS.find(s => s.questions.some(q => q.id === qid));
-    if (!sit) return;
-    if (lockedSections.has(sit.id)) return; // section already submitted
-
-    // Update state
-    state.answers[qid] = choice;
-
-    // Update UI: deselect siblings, select this one
-    const qBlock = btn.closest('.question-block');
-    qBlock.classList.add('answered');
-    qBlock.querySelectorAll('.choice-btn').forEach(b => {
-        b.classList.remove('selected');
-    });
-    btn.classList.add('selected');
-
-    // Update section status
-    const sectionAnswered = sit.questions.filter(q => state.answers[q.id]).length;
-    const sectionTotal = sit.questions.length;
-    const statusEl = $(`ssa-status-${sit.id}`);
-    if (statusEl) {
-        if (sectionAnswered === sectionTotal) {
-            statusEl.textContent = `All ${sectionTotal} answered. You may change any answer until you click submit.`;
-        } else {
-            statusEl.textContent = `${sectionAnswered} of ${sectionTotal} answered — you can change answers freely until you submit this section.`;
-        }
-    }
-    const sBtn = $(`section-btn-${sit.id}`);
-    if (sBtn) sBtn.disabled = (sectionAnswered !== sectionTotal);
-
-    updateProgress();
-}
-
-function updateProgress() {
-    const track = $('progress-track');
-    track.innerHTML = '';
-    SITUATIONS.forEach(sit => {
-        const step = document.createElement('div');
-        step.className = 'pt-step';
-        if (lockedSections.has(sit.id)) {
-            step.classList.add('done');
-        } else {
-            const done = sit.questions.filter(q => state.answers[q.id]).length;
-            if (done > 0) step.classList.add('active');
-        }
-        track.appendChild(step);
-    });
-}
-
-function maybeShowSubmit() {
-    const allLocked = SITUATIONS.every(s => lockedSections.has(s.id));
-    const submitArea = $('submit-area');
-    if (allLocked) {
-        submitArea.style.display = 'block';
-        $('submit-status').textContent = 'All four sections submitted. Click below to finalize and see your score.';
-        $('submit-btn').disabled = false;
-    } else {
-        submitArea.style.display = 'none';
-    }
+    if (nextAction) nextAction();
 }
 
 // ─── SUBMIT ───────────────────────────────────────────────────────────────
-$('submit-btn').addEventListener('click', () => submitExam(false));
-
 function submitExam(forced) {
     if (state.submitted) return;
     if (!forced) {
-        // All four sections must be section-submitted before final submit
-        if (!SITUATIONS.every(s => lockedSections.has(s.id))) return;
+        if (Object.keys(state.answers.delta).length < 5) return;
     }
+
+    // Build section key for each situation
+    const sectionKeys = {
+        alpha: 'alpha_' + state.alphaChoice,
+        beta:  'beta_'  + state.betaChoice,
+        gamma: 'gamma_' + state.gammaChoice,
+        delta: 'delta_' + state.deltaChoice
+    };
 
     // Score
     let correct = 0;
-    const allQs = SITUATIONS.flatMap(s => s.questions);
-    const answerStr = allQs.map(q => `${q.id}:${state.answers[q.id]}${state.answers[q.id] === q.correct ? '✓' : '✗'}`).join(' | ');
-    allQs.forEach(q => {
-        if (state.answers[q.id] === q.correct) correct++;
+    const allAnswers = [];
+    ['alpha','beta','gamma','delta'].forEach((sit, sIdx) => {
+        const key = sectionKeys[sit];
+        const qs  = key ? QUESTIONS[key] : null;
+        for (let i = 0; i < 5; i++) {
+            const chosen  = state.answers[sit][i];
+            const correctLetter = qs ? qs[i].correct : null;
+            const isRight = chosen && correctLetter && chosen === correctLetter;
+            if (isRight) correct++;
+            allAnswers.push({
+                sit: sit.toUpperCase(),
+                qKey: key || '(not reached)',
+                qIndex: i,
+                stem: qs ? qs[i].stem : '(not reached)',
+                chosen: chosen || null,
+                correct: correctLetter,
+                isRight: !!isRight
+            });
+        }
     });
+
     const points = correct * 5;
-    const pct = Math.round((correct / 20) * 100);
+    const pct    = Math.round((correct / 20) * 100);
+    const path   = buildPathLabel();
 
-    const payload = {
-        studentId: state.studentId,
-        sessionId: state.sessionId,
-        correct: correct,
-        score: points,
-        percentage: pct + '%',
-        answers: answerStr,
-        startedAt: state.startedAt,
-        submittedAt: new Date().toISOString()
-    };
-
-    submitToGoogleForm(payload);
-
-    state.submitted = true;
+    // Update results screen
     $('results-name').textContent = `Student ${state.studentId}`;
     $('results-score').textContent = `${points} / 100`;
     $('results-pct').textContent = `${pct}%`;
+    $('results-path').textContent = path;
     $('results-session-id').textContent = state.sessionId;
+
+    // Answer review
+    const reviewEl = $('answers-review');
+    reviewEl.innerHTML = allAnswers.map((a, i) => `
+        <div class="answer-review-item ${a.isRight ? 'correct' : 'incorrect'}">
+            <div class="ari-status ${a.isRight ? 'correct' : 'incorrect'}">${a.isRight ? '✓' : '✗'} Q${i+1} — ${a.sit} (${a.isRight ? 'Correct' : 'Incorrect'})</div>
+            <div class="ari-question">${(a.stem || '').replace(/<[^>]+>/g,'').substring(0,120)}…</div>
+            <div class="ari-answer">Your answer: ${a.chosen || '—'}${!a.isRight && a.correct ? ' &nbsp;·&nbsp; Correct: ' + a.correct : ''}</div>
+        </div>
+    `).join('');
+
+    // Submission payload
+    const answerStr = allAnswers.map((a, i) => `Q${i+1}:${a.chosen||'?'}(${a.isRight?'✓':'✗'})`).join(' | ');
+    submitToGoogleForm({
+        studentId:  state.studentId,
+        sessionId:  state.sessionId,
+        path:       path,
+        score:      points,
+        percentage: pct + '%',
+        answers:    answerStr,
+        startedAt:  state.startedAt,
+        submittedAt: new Date().toISOString()
+    });
+
+    state.submitted = true;
     showScreen('results-screen');
+}
+
+function buildPathLabel() {
+    const aL = state.alphaChoice === 'craft'      ? 'Craft Story'      : 'Community Story';
+    const bL = state.betaChoice  === 'dtc'        ? 'D2C Hybrid'       : 'Double Down on Dealers';
+    const gL = state.gammaChoice === 'decline'    ? 'Decline Apex'     : 'Accept Apex';
+    const dL = state.deltaChoice === 'audiophile' ? 'Audiophile Segment ($1,500+)' : 'Connected Home ($500+)';
+    return `${aL} › ${bL} › ${gL} › ${dL}`;
 }
 
 // ─── GOOGLE FORM SUBMISSION ───────────────────────────────────────────────
 async function submitToGoogleForm(payload) {
     if (!FORM_URL) {
-        // No form configured — submission is no-op (instructor will be notified)
         console.warn('[B&H Exam] No Google Form configured — submission skipped.');
         return;
     }
     try {
-        const formData = new FormData();
-        if (FORM_ENTRY.studentId) formData.append(FORM_ENTRY.studentId, payload.studentId);
-        if (FORM_ENTRY.sessionId) formData.append(FORM_ENTRY.sessionId, payload.sessionId);
-        if (FORM_ENTRY.score)     formData.append(FORM_ENTRY.score,     String(payload.score));
-        if (FORM_ENTRY.percentage)formData.append(FORM_ENTRY.percentage,payload.percentage);
-        if (FORM_ENTRY.answers)   formData.append(FORM_ENTRY.answers,   payload.answers);
-
-        await fetch(FORM_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-        });
+        const fd = new FormData();
+        if (FORM_ENTRY.studentId)  fd.append(FORM_ENTRY.studentId,  payload.studentId);
+        if (FORM_ENTRY.sessionId)  fd.append(FORM_ENTRY.sessionId,  payload.sessionId);
+        if (FORM_ENTRY.score)      fd.append(FORM_ENTRY.score,       String(payload.score));
+        if (FORM_ENTRY.percentage) fd.append(FORM_ENTRY.percentage,  payload.percentage);
+        if (FORM_ENTRY.answers)    fd.append(FORM_ENTRY.answers,     payload.answers);
+        if (FORM_ENTRY.path)       fd.append(FORM_ENTRY.path,        payload.path);
+        await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: fd });
         console.log('[B&H Exam] Results submitted.');
     } catch (err) {
         console.error('[B&H Exam] Submission error:', err);
